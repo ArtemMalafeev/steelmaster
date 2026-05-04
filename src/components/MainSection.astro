@@ -1,0 +1,237 @@
+---
+import { Image } from "astro:assets";
+
+import main from "../images/main.jpg";
+
+import SuccessIcon from "../components/icons/Success.astro";
+---
+
+<section class="section main" aria-labelledby="hero-title">
+  <div class="container">
+    <div class="main__container">
+      <div class="main__description">
+        <h1 class="main__title" id="hero-title">
+          Производство и монтаж <span>всех видов ворот и заборов</span> под ключ
+        </h1>
+        <p class="main__info">
+          Работаем на любом типе грунта. От бюджетного до премиум сегмента
+        </p>
+        <ul class="main__list">
+          <li class="main__item">
+            <div class="main__icon" aria-hidden="true"><SuccessIcon /></div>
+            <span>Предоставляем гарантию</span>
+          </li>
+          <li class="main__item">
+            <div class="main__icon" aria-hidden="true"><SuccessIcon /></div>
+            <span>Собственное производство</span>
+          </li>
+          <li class="main__item">
+            <div class="main__icon" aria-hidden="true"><SuccessIcon /></div>
+            <span>Быстрый монтаж</span>
+          </li>
+        </ul>
+
+        <div class="main__actions">
+          <button class="main__calculateBtn" type="button"
+            >Рассчитать стоимость</button
+          >
+          <button class="main__worksBtn" type="button">Наши работы</button>
+        </div>
+
+        <div class="main__stat" role="group" aria-label="Статистика компании">
+          <div class="main__statItem">
+            <p class="main__statTitle">500+</p>
+            <p class="main__statInfo">Выполненных проектов</p>
+          </div>
+          <div class="main__statItem">
+            <p class="main__statTitle">12</p>
+            <p class="main__statInfo">Лет на рынке</p>
+          </div>
+          <div class="main__statItem">
+            <p class="main__statTitle">98%</p>
+            <p class="main__statInfo">Довольных клиентов</p>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="main__img"
+        role="img"
+        aria-label="Пример готового забора с указанием цены"
+      >
+        <Image src={main} alt="Процесс монтажа забора нашими мастерами" />
+        <div class="main__imgInfo">
+          <span class="main__imgInfoText">От</span>
+          <span class="main__imgInfoPrice">15 000 ₽</span>
+          <span class="main__imgInfoText">за погонный метр</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  .main {
+    background-color: var(--color-bg-1);
+    padding: 4rem 0;
+
+    &__container {
+      display: flex;
+      align-items: stretch;
+      gap: 90px;
+    }
+
+    &__description {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      row-gap: 26px;
+      justify-content: center;
+    }
+
+    &__list {
+      display: flex;
+      flex-direction: column;
+      row-gap: 12px;
+    }
+
+    &__item {
+      display: flex;
+      column-gap: 8px;
+      align-items: center;
+
+      span {
+        font-size: 16px;
+        color: var(--color-gray-700);
+      }
+    }
+
+    &__icon {
+      width: 26px;
+      height: 26px;
+      color: var(--color-primary);
+    }
+
+    &__title {
+      span {
+        color: var(--color-primary);
+      }
+    }
+
+    &__info {
+      font-size: 22px;
+      color: var(--color-gray-700);
+    }
+
+    &__actions {
+      display: flex;
+      column-gap: 16px;
+      align-items: center;
+    }
+
+    &__calculateBtn {
+      padding: 20px 30px;
+      font-size: 18px;
+      font-weight: 500;
+      border-radius: 10px;
+      color: var(--color-white);
+      background-color: var(--color-primary);
+      border: 2px solid transparent;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: var(--color-primary-hover);
+      }
+    }
+
+    &__worksBtn {
+      padding: 20px 30px;
+      font-size: 18px;
+      font-weight: 500;
+      border-radius: 10px;
+      color: var(--color-secondary);
+      background-color: transparent;
+      border: 2px solid var(--color-secondary);
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: var(--color-btn-outline-hover);
+      }
+    }
+
+    &__stat {
+      display: flex;
+      gap: 24px;
+      margin-top: 20px;
+    }
+
+    &__statItem {
+      display: flex;
+      flex-direction: column;
+      row-gap: 6px;
+    }
+
+    &__statTitle {
+      font-size: 34px;
+      font-weight: 700;
+      color: var(--color-primary);
+    }
+
+    &__statInfo {
+      font-size: 16px;
+      color: var(--color-secondary);
+    }
+
+    &__img {
+      flex: 1.2;
+      position: relative;
+      max-height: 600px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        border-radius: 16px;
+        box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
+      }
+    }
+
+    &__imgInfo {
+      position: absolute;
+      bottom: -30px;
+      right: -30px;
+      display: flex;
+      flex-direction: column;
+      row-gap: 10px;
+      padding: 28px 20px;
+      border-radius: 12px;
+      width: max-content;
+      background-color: var(--color-white);
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
+    }
+
+    &__imgInfoPrice {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--color-primary);
+    }
+
+    &__imgInfoText {
+      font-size: 16px;
+      color: var(--color-secondary);
+    }
+
+    @media (max-width: 992px) {
+      &__container {
+        flex-direction: column;
+        gap: 30px;
+      }
+
+      &__img {
+        max-height: 400px;
+        width: 100%;
+      }
+    }
+  }
+</style>

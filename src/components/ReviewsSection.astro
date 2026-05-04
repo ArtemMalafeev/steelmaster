@@ -1,0 +1,124 @@
+<section class="section reviews" aria-labelledby="reviews-title">
+  <div class="container">
+    <div class="reviews__container">
+      <div class="reviews__top">
+        <h2 id="reviews-title" class="reviews__title">Отзывы наших клиентов</h2>
+        <p class="reviews__subtitle">
+          Нам доверяют, потому что мы делаем свою работу с душой
+        </p>
+      </div>
+
+      <div class="reviews__widgets">
+        <!-- Виджет отзывов -->
+        <div class="reviews__iframeWrapper">
+          <iframe
+            title="Отзывы о компании МастерСталь на Яндекс.Картах"
+            loading="lazy"
+            class="reviews__iframe"
+            src="https://yandex.ru/maps-reviews-widget/183730944868?comments"
+            aria-label="Список отзывов клиентов"></iframe>
+          <a
+            href="https://yandex.ru/maps/org/masterstal/183730944868/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="reviews__yandexLink"
+          >
+            МастерСталь на карте Ставропольского края — Яндекс Карты
+          </a>
+        </div>
+
+        <!-- Бейдж рейтинга -->
+        <div class="reviews__rating">
+          <iframe
+            title="Рейтинг компании МастерСталь"
+            loading="lazy"
+            src="https://yandex.ru/sprav/widget/rating-badge/183730944868?type=rating"
+            width="150"
+            height="50"
+            frameborder="0"
+            aria-label="Рейтинг организации на Яндекс.Справочнике"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  .reviews {
+    &__container {
+      text-align: center;
+    }
+    &__top {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      row-gap: 10px;
+    }
+    &__subtitle {
+      font-size: 22px;
+      color: var(--color-secondary);
+    }
+
+    &__widgets {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    &__iframeWrapper {
+      position: relative;
+      width: 100%;
+      max-width: 560px;
+      height: 800px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid #e6e6e6;
+    }
+
+    &__iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    &__yandexLink {
+      position: absolute;
+      bottom: 8px;
+      left: 0;
+      width: 100%;
+      padding: 0 16px;
+      box-sizing: border-box;
+      text-align: center;
+      color: #b3b3b3;
+      font-size: 10px;
+      font-family:
+        YS Text,
+        sans-serif;
+      text-decoration: none;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-height: 14px;
+      display: block;
+
+      &:focus-visible {
+        outline: 2px solid var(--color-primary);
+        outline-offset: 2px;
+      }
+    }
+
+    &__rating {
+      display: flex;
+      justify-content: center;
+    }
+
+    @media (max-width: 576px) {
+      &__iframeWrapper {
+        height: 600px;
+      }
+    }
+  }
+</style>

@@ -1,0 +1,30 @@
+<section class="section contacts" aria-labelledby="contacts-title">
+  <div class="container">
+    <div class="contacts__container">
+      <div class="contacts__top">
+        <h2 id="contacts-title" class="contacts__title">Наши услуги</h2>
+        <p class="contacts__subtitle">
+          Полный цикл работ: от проектирования до монтажа и обслуживания
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  .contacts {
+    &__container {
+      text-align: center;
+    }
+    &__top {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      row-gap: 10px;
+    }
+    &__subtitle {
+      font-size: 22px;
+      color: var(--color-secondary);
+    }
+  }
+</style>

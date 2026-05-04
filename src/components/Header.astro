@@ -1,0 +1,179 @@
+---
+import { Image } from "astro:assets";
+
+import logo from "../images/logo.jpg";
+
+import WatchIcon from "../components/icons/Watch.astro";
+import AddressIcon from "../components/icons/Address.astro";
+import PhoneIcon from "../components/icons/Phone.astro";
+---
+
+<header class="header">
+  <div class="header__container">
+    <div class="header__top">
+      <div class="container">
+        <div class="header__info">
+          <div class="header__infoItem">
+            <div class="header__infoIcon">
+              <WatchIcon />
+            </div>
+            <span>Пн-Пт: 9:00-18:00</span>
+          </div>
+          <div class="header__infoItem">
+            <div class="header__infoIcon">
+              <AddressIcon />
+            </div>
+            <span>Шпаковский р-н, х. Вязники, 92</span>
+          </div>
+        </div>
+        <div class="header__socials"></div>
+      </div>
+    </div>
+    <div class="header__bottom">
+      <div class="container">
+        <div class="header__bottomContainer">
+          <div class="header__company">
+            <!-- <Image src={logo} alt="Логотип СТАЛЬМАСТЕР" class="header__logo" /> -->
+
+            <div class="header__companyInfo">
+              <p class="header__companyName">СТАЛЬМАСТЕР</p>
+              <p class="header__companyDescription">
+                Изготовление ворот в Ставропольском крае
+              </p>
+            </div>
+          </div>
+          <nav class="header__nav nav">
+            <button class="nav__link">Услуги</button>
+            <button class="nav__link">Портфолио</button>
+            <button class="nav__link">Расчет</button>
+            <button class="nav__link">Контакты</button>
+          </nav>
+          <div class="header__contacts">
+            <div class="header__phone">
+              <div class="header__phoneIcon">
+                <PhoneIcon />
+              </div>
+              <span class="header__phoneNumber">+7(918) 768 30 88</span>
+            </div>
+            <button class="header__callbackBtn">Заказать звонок</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <style lang="scss">
+      .header {
+        &__top {
+          padding: 4px 0;
+          font-size: 12px;
+          background-color: var(--color-bg-secondary);
+        }
+
+        &__info {
+          display: flex;
+          gap: 32px;
+          color: var(--color-white);
+        }
+
+        &__infoItem {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+        }
+
+        &__infoIcon {
+          width: 20px;
+          height: 20px;
+          color: var(--color-primary);
+        }
+
+        &__bottom {
+          padding: 20px 0;
+          background-color: var(--color-white);
+        }
+
+        &__bottomContainer {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+
+        &__contacts {
+          display: flex;
+          align-items: center;
+          gap: 20px;
+        }
+
+        &__phone {
+          display: flex;
+          align-items: center;
+          font-weight: 600;
+          gap: 8px;
+        }
+
+        &__phoneIcon {
+          width: 22px;
+          height: 22px;
+          color: var(--color-primary);
+        }
+
+        &__callbackBtn {
+          padding: 12px 22px;
+          max-height: max-content;
+          font-weight: 500;
+          border-radius: 10px;
+          color: var(--color-white);
+          background-color: var(--color-primary);
+
+          transition: background-color 0.2s;
+
+          &:hover {
+            background-color: var(--color-primary-hover);
+          }
+        }
+
+        &__company {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+
+        &__companyInfo {
+          display: flex;
+          flex-direction: column;
+          row-gap: 4px;
+        }
+
+        &__companyDescription {
+          font-size: 12px;
+          color: var(--color-gray-700);
+        }
+
+        &__companyName {
+          font-size: 20px;
+          font-weight: 700;
+        }
+
+        &__logo {
+          width: 60px;
+          height: 60px;
+        }
+      }
+
+      .nav {
+        display: flex;
+        gap: 20px;
+
+        &__link {
+          font-weight: 500;
+          transition: all 0.25s ease;
+          color: var(--color-gray-700);
+
+          &:hover {
+            color: var(--color-primary);
+          }
+        }
+      }
+    </style>
+  </div>
+</header>

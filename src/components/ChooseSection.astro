@@ -1,0 +1,125 @@
+---
+import WatchIcon from "../components/icons/Watch.astro";
+
+const advantages = [
+  {
+    title: "Гарантия 5 лет",
+    description: "Официальная гарантия на все виды работ и материалы",
+  },
+  {
+    title: "Собственное производство",
+    description: "Контролируем качество на каждом этапе без посредников",
+  },
+  {
+    title: "Быстрый монтаж",
+    description: "Установка за 1–3 дня без задержек и скрытых платежей",
+  },
+  {
+    title: "Работа по договору",
+    description: "Фиксируем цену и сроки в официальном договоре",
+  },
+  {
+    title: "Бесплатный замер",
+    description: "Выезд специалиста и расчёт сметы в день обращения",
+  },
+  {
+    title: "Оплата после монтажа",
+    description: "Никаких предоплат. Расчёт только после приёмки работ",
+  },
+];
+---
+
+<section class="section choose" aria-labelledby="choose-title">
+  <div class="container">
+    <div class="choose__container">
+      <div class="choose__top">
+        <h2 id="choose-title" class="choose__title">Почему выбирают нас</h2>
+        <p class="choose__subtitle">
+          Более 500 довольных клиентов доверили нам свои участки
+        </p>
+      </div>
+      <ul class="choose__list">
+        {
+          advantages.map((item) => (
+            <li class="choose__item">
+              <div class="choose__icon" aria-hidden="true">
+                <WatchIcon />
+              </div>
+              <h3 class="choose__itemTitle">{item.title}</h3>
+              <p class="choose__description">{item.description}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  .choose {
+    background-color: var(--color-white);
+
+    &__container {
+      text-align: center;
+    }
+
+    &__top {
+      display: flex;
+      flex-direction: column;
+      row-gap: 10px;
+    }
+
+    &__subtitle {
+      font-size: 22px;
+      color: var(--color-secondary);
+    }
+
+    &__icon {
+      width: 32px;
+      height: 32px;
+      padding: 10px;
+      color: var(--color-primary);
+      background-color: var(--color-bg-3);
+      border-radius: 12px;
+    }
+
+    &__itemTitle {
+      margin-top: 10px;
+      font-size: 20px;
+      font-weight: 500;
+    }
+
+    &__description {
+      font-size: 16px;
+      line-height: 1.4;
+      color: var(--color-secondary);
+    }
+
+    &__list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 50px;
+
+      @media screen and (min-width: 720px) {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      }
+    }
+
+    &__item {
+      display: flex;
+      flex-direction: column;
+      row-gap: 10px;
+      padding: 20px;
+      border-radius: 16px;
+      text-align: left;
+      background-color: var(--color-bg-2);
+
+      transition: box-shadow 0.25s ease;
+
+      &:hover {
+        box-shadow: 0 12px 24px -6px rgba(0, 0, 0, 0.12);
+      }
+    }
+  }
+</style>

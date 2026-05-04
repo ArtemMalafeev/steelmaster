@@ -1,0 +1,212 @@
+---
+import { Image } from "astro:assets";
+
+import WatchIcon from "../components/icons/Watch.astro";
+import main from "../images/main.jpg";
+
+const servicesData = [
+  {
+    title: "Откатные ворота",
+    description:
+      "Экономят пространство, надежны, удобны в эксплуатации. Подходят для узких въездов.",
+    price: "от 45 000 ₽",
+    image: main,
+    features: [
+      "Автоматика опциональна",
+      "Любой размер проема",
+      "Бесшумная работа",
+    ],
+  },
+  {
+    title: "Распашные ворота",
+    description: "Классическое решение, простое в обслуживании и ремонте.",
+    price: "от 38 000 ₽",
+    image: main,
+    features: ["Быстрый монтаж", "Усиленный каркас", "Под любой стиль"],
+  },
+  {
+    title: "Распашные ворота",
+    description: "Классическое решение, простое в обслуживании и ремонте.",
+    price: "от 38 000 ₽",
+    image: main,
+    features: ["Быстрый монтаж", "Усиленный каркас", "Под любой стиль"],
+  },
+  {
+    title: "Распашные ворота",
+    description: "Классическое решение, простое в обслуживании и ремонте.",
+    price: "от 38 000 ₽",
+    image: main,
+    features: ["Быстрый монтаж", "Усиленный каркас", "Под любой стиль"],
+  },
+  {
+    title: "Распашные ворота",
+    description: "Классическое решение, простое в обслуживании и ремонте.",
+    price: "от 38 000 ₽",
+    image: main,
+    features: ["Быстрый монтаж", "Усиленный каркас", "Под любой стиль"],
+  },
+  {
+    title: "Распашные ворота",
+    description: "Классическое решение, простое в обслуживании и ремонте.",
+    price: "от 38 000 ₽",
+    image: main,
+    features: ["Быстрый монтаж", "Усиленный каркас", "Под любой стиль"],
+  },
+];
+---
+
+<section class="section services" aria-labelledby="services-title">
+  <div class="container">
+    <div class="services__container">
+      <div class="services__top">
+        <h2 id="services-title" class="services__title">Наши услуги</h2>
+        <p class="services__subtitle">
+          Полный цикл работ: от проектирования до монтажа и обслуживания
+        </p>
+      </div>
+      <ul class="services__list">
+        {
+          servicesData.map((service) => (
+            <li class="services__item">
+              <div class="services__top">
+                <Image
+                  class="services__image"
+                  src={service.image}
+                  alt={`Пример услуги: ${service.title}`}
+                />
+                <div class="services__topInfo">{service.price}</div>
+              </div>
+              <div class="services__cardBottom">
+                <div class="services__cardHero">
+                  <div class="services__icon" aria-hidden="true">
+                    <WatchIcon />
+                  </div>
+                  <h3 class="services__cardTitle">{service.title}</h3>
+                </div>
+                <p class="services__cardDescription">{service.description}</p>
+                <ul class="services__cardList">
+                  {service.features.map((feature) => (
+                    <li class="services__cardItem">{feature}</li>
+                  ))}
+                </ul>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  .services {
+    background-color: var(--color-bg-2);
+
+    &__container {
+      text-align: center;
+    }
+
+    &__top {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      row-gap: 10px;
+    }
+
+    &__topInfo {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      padding: 12px 16px;
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: 12px;
+      color: var(--color-white);
+      background-color: var(--color-primary);
+    }
+
+    &__icon {
+      width: 24px;
+      height: 24px;
+      padding: 10px;
+      color: var(--color-primary);
+      background-color: var(--color-bg-3);
+      border-radius: 12px;
+    }
+
+    &__subtitle {
+      font-size: 22px;
+      color: var(--color-secondary);
+    }
+
+    &__item {
+      border-radius: 20px;
+      overflow: hidden;
+      text-align: left;
+      box-shadow: 0 12px 24px -6px rgba(0, 0, 0, 0.12);
+    }
+
+    &__cardHero {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    &__cardBottom {
+      display: flex;
+      flex-direction: column;
+      row-gap: 14px;
+    }
+
+    &__cardDescription {
+      font-size: 16px;
+      line-height: 1.4;
+      color: var(--color-secondary);
+    }
+
+    &__cardList {
+      display: flex;
+      flex-direction: column;
+      row-gap: 10px;
+      list-style-type: disc;
+      padding-left: 20px;
+    }
+
+    &__cardItem {
+      font-size: 14px;
+      color: var(--color-secondary);
+
+      &::marker {
+        color: var(--color-primary);
+        font-size: 1.1em;
+      }
+    }
+
+    &__cardTitle {
+      font-size: 20px;
+      font-weight: 500;
+    }
+
+    &__image {
+      display: block;
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    &__cardBottom {
+      padding: 24px;
+    }
+
+    &__list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 50px;
+
+      @media screen and (min-width: 720px) {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      }
+    }
+  }
+</style>
