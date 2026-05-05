@@ -1,0 +1,449 @@
+---
+import { Image } from "astro:assets";
+import main from "../images/main.jpg";
+
+const worksData = [
+  {
+    id: 1,
+    category: "gates",
+    title: "Откатные ворота Pro",
+    price: "45 000 ₽",
+    area: "12 м²",
+    desc: "Автоматические откатные ворота с усиленным каркасом и тихим приводом",
+    image: main,
+  },
+  {
+    id: 2,
+    category: "gates",
+    title: "Распашные ворота Classic",
+    price: "38 000 ₽",
+    area: "10 м²",
+    desc: "Классическое решение с встроенной калиткой и антикоррозийным покрытием",
+    image: main,
+  },
+  {
+    id: 3,
+    category: "fences",
+    title: "Забор из профнастила",
+    price: "15 000 ₽",
+    area: "45 м²",
+    desc: "Быстрый монтаж на свайном фундаменте, гарантия 5 лет",
+    image: main,
+  },
+  {
+    id: 4,
+    category: "fences",
+    title: "Евроштакетник М-образный",
+    price: "22 000 ₽",
+    area: "60 м²",
+    desc: "Эстетичный вид, двустороннее полимерное покрытие, продуваемость 50%",
+    image: main,
+  },
+  {
+    id: 5,
+    category: "gates",
+    title: "Секционные ворота",
+    price: "55 000 ₽",
+    area: "9 м²",
+    desc: "Теплоизоляция панелей, встроенная система защиты от защемления",
+    image: main,
+  },
+  {
+    id: 6,
+    category: "fences",
+    title: "Кованый забор с элементами",
+    price: "35 000 ₽",
+    area: "30 м²",
+    desc: "Индивидуальный эскиз, горячая ковка, монтаж за 2 дня",
+    image: main,
+  },
+  {
+    id: 7,
+    category: "gates",
+    title: "Откатные ворота Lite",
+    price: "40 000 ₽",
+    area: "11 м²",
+    desc: "Бюджетное решение для дачных участков с ручным управлением",
+    image: main,
+  },
+  {
+    id: 8,
+    category: "fences",
+    title: "Забор из сетки рабицы",
+    price: "8 000 ₽",
+    area: "50 м²",
+    desc: "Экономичный вариант для ограждения периметра и зонирования",
+    image: main,
+  },
+  {
+    id: 9,
+    category: "gates",
+    title: "Гаражные роллеты",
+    price: "48 000 ₽",
+    area: "8 м²",
+    desc: "Утепленные ламели, автоматика в подарок, шумоизоляция",
+    image: main,
+  },
+];
+---
+
+<section id="works" class="section portfolio" aria-labelledby="portfolio-title">
+  <div class="container">
+    <div class="portfolio__container">
+      <div class="portfolio__top">
+        <h2 id="portfolio-title" class="portfolio__title">
+          Примеры наших работ
+        </h2>
+        <p class="portfolio__subtitle">Реальные проекты наших клиентов</p>
+      </div>
+
+      <div
+        class="portfolio__tabs"
+        role="tablist"
+        aria-label="Фильтр по типу работ"
+      >
+        <button
+          class="portfolio__tab active"
+          data-filter="all"
+          role="tab"
+          aria-selected="true">Все работы</button
+        >
+        <button
+          class="portfolio__tab"
+          data-filter="gates"
+          role="tab"
+          aria-selected="false">Ворота</button
+        >
+        <button
+          class="portfolio__tab"
+          data-filter="fences"
+          role="tab"
+          aria-selected="false">Заборы</button
+        >
+        <button
+          class="portfolio__tab"
+          data-filter="fences"
+          role="tab"
+          aria-selected="false">Заборы</button
+        >
+        <button
+          class="portfolio__tab"
+          data-filter="fences"
+          role="tab"
+          aria-selected="false">Заборы</button
+        >
+        <button
+          class="portfolio__tab"
+          data-filter="fences"
+          role="tab"
+          aria-selected="false">Заборы</button
+        >
+      </div>
+
+      <ul class="portfolio__list" id="portfolio-list">
+        {
+          worksData.map((work) => (
+            <li class="portfolio__item" data-category={work.category}>
+              <div class="portfolio__imageWrapper">
+                <Image
+                  src={work.image}
+                  alt={work.title}
+                  loading="lazy"
+                  width="600"
+                  height="450"
+                />
+                <div class="portfolio__overlay">
+                  <h3 class="portfolio__itemTitle">{work.title}</h3>
+                  <p class="portfolio__itemDesc">{work.desc}</p>
+                  <div class="portfolio__itemMeta">
+                    <span class="portfolio__itemPrice">{work.price}</span>
+                    <span class="portfolio__itemArea">{work.area}</span>
+                  </div>
+                </div>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+
+      <button class="portfolio__loadMore" type="button" id="loadMoreBtn"
+        >Показать ещё</button
+      >
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  .portfolio {
+    background-color: var(--color-white);
+
+    &__container {
+      text-align: center;
+    }
+
+    &__top {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      row-gap: 18px;
+    }
+
+    &__tabs {
+      margin-top: 30px;
+      display: flex;
+      gap: 6px;
+      padding: 6px;
+      justify-content: center;
+      border-radius: 12px;
+    }
+
+    &__tab {
+      padding: 10px 20px;
+      border: none;
+      background: transparent;
+      color: var(--color-secondary);
+      background-color: var(--color-bg-3);
+      font-size: 15px;
+      font-weight: 500;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      &:hover {
+        color: var(--color-primary);
+      }
+
+      &.active {
+        background-color: var(--color-primary);
+        color: var(--color-white);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      }
+    }
+
+    &__list {
+      margin-top: 30px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    &__subtitle {
+      font-size: 22px;
+      color: var(--color-secondary);
+    }
+
+    &__item {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      text-align: left;
+      aspect-ratio: 4 / 3;
+      background-color: var(--color-bg-3);
+      transition: box-shadow 0.3s ease;
+
+      &:hover {
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+      }
+
+      &.hidden {
+        display: none;
+      }
+    }
+
+    &__imageWrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.5s ease;
+      }
+    }
+
+    &__overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 24px;
+      background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.9) 0%,
+        rgba(0, 0, 0, 0.4) 50%,
+        transparent 100%
+      );
+      color: var(--color-white);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      gap: 12px;
+      pointer-events: none;
+
+      .portfolio__item:hover & {
+        opacity: 1;
+        pointer-events: auto;
+      }
+    }
+
+    &__itemTitle {
+      font-size: 22px;
+      font-weight: 600;
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    &__itemDesc {
+      font-size: 14px;
+      line-height: 1.4;
+      margin: 0;
+      opacity: 0.9;
+    }
+
+    &__itemMeta {
+      display: flex;
+      gap: 12px;
+      margin-top: 4px;
+
+      span {
+        font-size: 13px;
+        font-weight: 500;
+        padding: 6px 10px;
+        background-color: rgba(255, 255, 255, 0.15);
+        border-radius: 6px;
+        white-space: nowrap;
+      }
+    }
+
+    &__itemPrice {
+      color: var(--color-primary);
+    }
+
+    &__loadMore {
+      display: block;
+      margin: 0 auto;
+      padding: 14px 32px;
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--color-primary);
+      background: transparent;
+      border: 2px solid var(--color-primary);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background-color: var(--color-primary);
+        color: var(--color-white);
+      }
+
+      &.hidden {
+        display: none;
+      }
+    }
+
+    @media (max-width: 992px) {
+      &__list {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      &__tabs {
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      &__tab {
+        flex: 1;
+        min-width: 100px;
+        padding: 10px 12px;
+        font-size: 14px;
+      }
+
+      &__list {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      &__item {
+        aspect-ratio: 16 / 10;
+      }
+
+      &__overlay {
+        opacity: 1;
+        pointer-events: auto;
+        padding: 16px;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+      }
+      &__itemTitle {
+        font-size: 18px;
+      }
+      &__itemDesc {
+        font-size: 13px;
+      }
+      &__loadMore {
+        width: 100%;
+      }
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const tabs = document.querySelectorAll(".portfolio__tab");
+    const items = document.querySelectorAll(".portfolio__item");
+    const loadMoreBtn = document.getElementById("loadMoreBtn");
+
+    let currentFilter = "all";
+    let visibleCount = 6;
+    const increment = 3;
+
+    function render() {
+      let filteredItems = Array.from(items);
+      if (currentFilter !== "all") {
+        filteredItems = filteredItems.filter(
+          (item) => item.dataset.category === currentFilter,
+        );
+      }
+
+      items.forEach((item) => item.classList.add("hidden"));
+
+      const toShow = filteredItems.slice(0, visibleCount);
+      toShow.forEach((item) => item.classList.remove("hidden"));
+
+      if (filteredItems.length > visibleCount) {
+        loadMoreBtn.classList.remove("hidden");
+        loadMoreBtn.textContent = "Показать ещё";
+      } else {
+        loadMoreBtn.classList.add("hidden");
+      }
+    }
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        tabs.forEach((t) => {
+          t.classList.remove("active");
+          t.setAttribute("aria-selected", "false");
+        });
+        tab.classList.add("active");
+        tab.setAttribute("aria-selected", "true");
+
+        currentFilter = tab.dataset.filter;
+        visibleCount = 6;
+        render();
+      });
+    });
+
+    loadMoreBtn.addEventListener("click", () => {
+      visibleCount += increment;
+      render();
+    });
+
+    render();
+  });
+</script>
