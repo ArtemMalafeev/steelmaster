@@ -53,7 +53,7 @@ import PhoneIcon from "../components/icons/Phone.astro";
               </div>
               <span class="header__phoneNumber">+7 (918) 768 30 88</span>
             </div>
-            <button class="header__callbackBtn" type="button"
+            <button class="header__callbackBtn" data-modal-trigger="call" aria-label="Заказать звонок" type="button"
               >Заказать звонок</button
             >
           </div>
@@ -100,7 +100,7 @@ import PhoneIcon from "../components/icons/Phone.astro";
       &__top {
         padding: 6px 0;
         font-size: 12px;
-        background-color: var(--color-bg-secondary);
+        background: var(--color-bg-secondary);
       }
 
       &__info {
