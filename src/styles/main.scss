@@ -1,52 +1,51 @@
 html {
-    font-family: var(--font-main);
-    scroll-behavior: smooth;
+  font-family: var(--font-main);
+  scroll-behavior: smooth;
 }
 
 .container {
-    position: relative;
+  position: relative;
 
-    max-width: 1240px;
-    height: 100%;
-    padding-inline: 16px;
+  max-width: 1240px;
+  height: 100%;
+  padding-inline: 16px;
 
-    @media screen and (min-width: 1240px) {
-        margin-inline: auto;
-        padding: 0;
-    }
+  @media screen and (min-width: 1240px) {
+    margin-inline: auto;
+    padding: 0;
+  }
 }
 
 button {
-    border: none;
-    margin: 0;
-    padding: 0;
-    width: auto;
-    overflow: visible;
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  overflow: visible;
 
-    background: transparent;
+  background: transparent;
 
-    color: inherit;
-    font: inherit;
+  color: inherit;
+  font: inherit;
 
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .section {
-    scroll-margin-top: 110px;
-    padding: 60px 0;
+  scroll-margin-top: 110px;
+  padding: 60px 0;
 }
 
 h1 {
-    font-size: 32px;
-    font-weight: 700;
+  font-size: 32px;
+  font-weight: 700;
 
-    @media screen and (min-width: 500px) {
-    font-size: 48px;
-        
-    }
+  @media screen and (min-width: 500px) {
+    font-size: 44px;
+  }
 }
 
 h2 {
-    font-size: 30px;
-    font-weight: 700;
+  font-size: 30px;
+  font-weight: 700;
 }
