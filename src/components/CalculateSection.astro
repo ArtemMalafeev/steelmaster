@@ -1,40 +1,584 @@
-<section
-  id="calculate"
-  class="section calculate"
-  aria-labelledby="calculate-title"
->
+---
+import { Image } from "astro:assets";
+import main from "../images/main.jpg";
+import img1 from "../images/calculator/1.jpg";
+
+
+const steps = [
+  {
+    id: 1,
+    title: 'Какой забор хотели бы установить ?',
+    description: 'Выберите тип конструкции',
+    options: [
+      { id: 'gates', label: 'Забор жалюзи', desc: 'Распашные или откатные', img: img1 },
+      { id: 'fence', label: 'Забор', desc: 'Любой тип и материал', img: main },
+      { id: 'both', label: 'Комплекс', desc: 'Ворота + забор', img: main },
+    ]
+  },
+  {
+    id: 2,
+    title: 'Тип забора',
+    description: 'Какой тип забора вам нужен?',
+    options: [
+      { id: 'solid', label: 'Глухой', desc: 'Максимальная приватность', img: main },
+      { id: 'vent', label: 'С просветами', desc: 'Продуваемый, без тени', img: main },
+      { id: 'sectional', label: 'Секционный', desc: 'Модульная конструкция', img: main },
+      { id: 'combo', label: 'Комбинированный', desc: 'Разные материалы', img: main },
+    ]
+  },
+  {
+    id: 3,
+    title: 'Материал',
+    description: 'Из чего будет конструкция?',
+    options: [
+      { id: 'metal', label: 'Металл', desc: 'Профнастил, евроштакетник', img: main },
+      { id: 'wood', label: 'Дерево', desc: 'Натуральная доска, брус', img: main },
+      { id: 'polymer', label: 'Полимер', desc: 'ПВХ, композит', img: main },
+      { id: 'stone', label: 'Камень/Кирпич', desc: 'Цоколь, столбы', img: main },
+    ]
+  },
+  {
+    id: 4,
+    title: 'Длина забора',
+    description: 'Выберите примерный метраж',
+    options: [
+      { id: 'to10', label: 'до 10 м', desc: 'Небольшой участок', img: main },
+      { id: '10-20', label: '10–20 м', desc: 'Средний размер', img: main },
+      { id: '20-50', label: '20–50 м', desc: 'Большой периметр', img: main },
+      { id: '50+', label: '50+ м', desc: 'Крупный объект', img: main },
+    ]
+  },
+  {
+    id: 5,
+    title: 'Контакты',
+    description: 'Куда отправить расчёт?',
+    isFormStep: true,
+    formFields: [
+      { id: 'name', label: 'Ваше имя', type: 'text', placeholder: 'Иван', required: true },
+      { id: 'phone', label: 'Телефон', type: 'tel', placeholder: '+7 (___) ___-__-__', required: true },
+      { id: 'comment', label: 'Комментарий', type: 'textarea', placeholder: 'Доп. пожелания' },
+    ]
+  }
+];
+---
+
+<section id="calculator" class="section calculator" aria-labelledby="calculator-title">
   <div class="container">
-    <div class="calculate__container">
-      <div class="calculate__top">
-        <h2 id="calculate-title" class="calculate__title">
-          Рассчитайте стоимость забора
-        </h2>
-        <p class="calculate__subtitle">
-          Ответьте на 3 простых вопроса и получите точный расчет
+     <div class="calculator__top">
+        <h2 id="calculator-title" class="calculator__title">Рассчитайте стоимость забора</h2>
+        <p class="calculator__subtitle">
+          Ответьте на 5 простых вопросов и получите расчет
         </p>
       </div>
-      <div></div>
+
+    <div class="calculator__container">
+      <!-- Форма -->
+      <form id="calcForm" class="calculator__form">
+        
+        {steps.map((step, index) => (
+          <div class="calculator__step" data-step={step.id} hidden={index !== 0}>
+            <h3 class="calculator__titleStep">{step.title}</h3>
+            <p class="calculator__desc">{step.description}</p>
+            
+            {step.options ? (
+              <div class="calculator__options">
+                {step.options.map((opt) => (
+                  <label class="calculator__option">
+                    <input type="radio" name={`step-${step.id}`} value={opt.id} class="calculator__optionInput" />
+                    <div class="calculator__optionCard">
+                      <div class="calculator__optionImage">
+                         <Image
+                          src={opt.img}
+                          alt={opt.desc}
+                          loading="lazy"
+                        />
+                      </div>
+                      <div class="calculator__optionContent">
+                        <h4 class="calculator__optionLabel">{opt.label}</h4>
+                      </div>
+                    </div>
+                  </label>
+                ))}
+              </div>
+            ) : step.formFields ? (
+              <div class="calculator__formFields">
+                {step.formFields.map((field) => (
+                  <div class="calculator__formField">
+                    <label class="calculator__formLabel" for={field.id}>{field.label}</label>
+                    {field.type === 'textarea' ? (
+                      <textarea id={field.id} name={field.id} class="calculator__formInput" placeholder={field.placeholder} required={field.required}></textarea>
+                    ) : (
+                      <input id={field.id} name={field.id} type={field.type} class="calculator__formInput" placeholder={field.placeholder} required={field.required} />
+                    )}
+                  </div>
+                ))}
+              </div>
+            ) : null}
+          </div>
+        ))}
+
+        <!-- Кнопки -->
+        <div class="calculator__nav">
+          <button type="button" id="btnPrev" class="calculator__btn calculator__btn--back" disabled>
+            Назад
+          </button>
+          <button type="button" id="btnNext" class="calculator__btn calculator__btn--next">
+            Далее
+          </button>
+          <button type="submit" id="btnSubmit" class="calculator__btn calculator__btn--submit" hidden>
+            Отправить
+          </button>
+        </div>
+      </form>
+
+      <!-- Успех -->
+      <div id="successBlock" class="calculator__success" hidden>
+        <div class="calculator__successIcon">✓</div>
+        <h3 class="calculator__successTitle">Готово!</h3>
+        <p class="calculator__successDesc">Заявка отправлена, мы свяжемся с вами в течение 15 минут</p>
+      </div>
+
     </div>
   </div>
 </section>
 
 <style lang="scss">
-  .calculate {
-    background-color: var(--color-bg-1);
+.calculator {
+  padding: 20px 0;
+  font-family: var(--font-main);
 
-    &__container {
-      text-align: center;
-    }
+    position: relative;
+  background: linear-gradient(160deg, #f8f9fb 0%, #eef2f7 100%);
+  overflow: hidden; // Чтобы декоративные элементы не вылезали за секцию
+
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  &::before {
+    width: 450px; height: 450px;
+    top: -120px; left: -100px;
+    background: radial-gradient(circle, rgba(245, 73, 0, 0.18), transparent 70%);
+  }
+  &::after {
+    width: 500px; height: 500px;
+    bottom: -150px; right: -120px;
+    background: radial-gradient(circle, rgba(54, 65, 83, 0.12), transparent 70%);
+  }
 
     &__top {
       display: flex;
       flex-direction: column;
       row-gap: 18px;
+      text-align: center;
     }
 
     &__subtitle {
       font-size: 22px;
       color: var(--color-secondary);
     }
+
+  &__container {
+    max-width: 720px;
+    margin: 0 auto;
+    margin-top: 24px;
+    background: var(--color-white);
+    border-radius: 16px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    max-height: 95vh;
   }
+
+  &__progress {
+    padding: 12px 20px;
+    flex-shrink: 0;
+  }
+
+  &__progressInfo {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--color-secondary);
+  }
+
+  &__progressTrack {
+    width: 100%;
+    height: 4px;
+    background: rgb(202, 202, 202);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  &__progressFill {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-primary-hover));
+    border-radius: 2px;
+    transition: width 0.25s ease-out;
+    will-change: width;
+  }
+
+  &__form { 
+    padding: 16px 20px 20px;
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__step[hidden] { display: none; }
+
+  &__titleStep {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--color-secondary);
+    margin: 0 0 4px;
+    line-height: 1.2;
+  }
+
+  &__desc {
+    font-size: 13px;
+    color: var(--color-gray-700);
+    margin: 0 0 16px;
+    line-height: 1.3;
+  }
+
+  &__options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  &__optionInput {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &__optionCard {
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    border: 2px solid rgb(226, 226, 226);
+    border-radius: 12px;
+    background: var(--color-white);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    height: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
+
+  }
+
+  &__optionInput:checked + &__optionCard {
+    border-color: var(--color-primary);
+    background: rgba(245, 73, 0, 0.04);
+  }
+
+&__optionImage {
+  width: 100%;
+  height: 200px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  background: var(--color-bg-3);
+  margin-bottom: 8px;
+  overflow: hidden; /* ⭐ Обрезаем всё, что вылезает */
+  display: flex;    /* ⭐ Центрируем картинку */
+  align-items: center;
+  justify-content: center;
+
+  /* ⭐ Стили для Astro Image */
+  :global(img) {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block;
+    border-radius: 8px;
+  }
+}
+
+  &__optionContent {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    min-width: 0;
+  }
+
+  &__optionLabel {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-secondary);
+    margin: 0 0 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+  }
+
+
+
+  &__formFields {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  &__formField { display: flex; flex-direction: column; gap: 4px; }
+
+  &__formLabel {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-secondary);
+  }
+
+  &__formInput {
+    padding: 10px 12px;
+    font-size: 14px;
+    border: 2px solid var(--color-bg-2);
+    border-radius: 8px;
+    background: var(--color-white);
+    color: var(--color-secondary);
+    transition: border-color 0.15s;
+  }
+
+  &__formInput:focus {
+    outline: none;
+    border-color: var(--color-primary);
+  }
+
+  &__nav {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 12px;
+    border-top: 1px solid var(--color-bg-2);
+    margin-top: auto;
+    flex-shrink: 0;
+  }
+
+  &__btn {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  &__btn--back {
+    background: transparent;
+    color: var(--color-secondary);
+    &:hover:not(:disabled) { background: var(--color-btn-outline-hover); }
+    &:disabled { opacity: 0.4; cursor: not-allowed; }
+  }
+
+  &__btn--next, &__btn--submit {
+    background: var(--color-primary);
+    color: var(--color-white);
+    &:hover { background: var(--color-primary-hover); }
+  }
+
+  &__btn--submit {
+    background: var(--color-secondary);
+    &:hover { background: var(--color-secondary-hover); }
+  }
+
+  &__success {
+    padding: 32px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    &[hidden] { display: none; }
+  }
+
+  &__successIcon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    color: var(--color-white);
+    font-size: 24px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+  }
+
+  &__successTitle {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--color-secondary);
+    margin: 0 0 6px;
+  }
+
+  &__successDesc {
+    font-size: 14px;
+    color: var(--color-gray-700);
+    margin: 0;
+    max-width: 280px;
+  }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+.shake {
+  animation: shake 0.2s ease;
+}
+
+@media (max-width: 576px) {
+  .calculator {
+    &__container {
+      border-radius: 12px;
+      margin: 0 8px;
+      margin-top: 20px;
+    }
+    &__progress { padding: 10px 16px; }
+    &__form { padding: 12px 16px 16px; }
+    &__options { grid-template-columns: 1fr; gap: 8px; }
+    
+    &__optionCard { 
+      flex-direction: row;
+      align-items: center; 
+      padding: 8px;
+      text-align: left;
+    }
+  
+    
+    &__optionContent {
+      align-items: flex-start;
+    }
+
+    
+    &__title { font-size: 17px; }
+    &__desc { font-size: 13px; margin-bottom: 12px; }
+    &__nav { 
+      flex-direction: column-reverse; 
+      gap: 8px; 
+      padding-top: 10px;
+    }
+    &__btn { width: 100%; padding: 12px; }
+  }
+}
 </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const steps = document.querySelectorAll('.calculator__step');
+  const totalSteps = steps.length;
+  
+  const progressFill = document.getElementById('progressFill');
+  const stepCurrent = document.getElementById('stepCurrent');
+  const stepPercent = document.getElementById('stepPercent');
+  
+  const btnPrev = document.getElementById('btnPrev');
+  const btnNext = document.getElementById('btnNext');
+  const btnSubmit = document.getElementById('btnSubmit');
+  const form = document.getElementById('calcForm');
+  const successBlock = document.getElementById('successBlock');
+
+  let currentStep = 1;
+
+  function updateProgress() {
+    const percent = Math.round((currentStep / totalSteps) * 100);
+    progressFill.style.width = `${percent}%`;
+    stepCurrent.textContent = currentStep;
+    stepPercent.textContent = `${percent}%`;
+    
+    btnPrev.disabled = currentStep === 1;
+    
+    if (currentStep === totalSteps) {
+      btnNext.hidden = true;
+      btnSubmit.hidden = false;
+    } else {
+      btnNext.hidden = false;
+      btnSubmit.hidden = true;
+    }
+  }
+
+  function showStep(stepNum) {
+    steps.forEach((step, index) => {
+      step.hidden = index !== stepNum - 1;
+    });
+    currentStep = stepNum;
+    updateProgress();
+  }
+
+  function validateCurrentStep() {
+    const activeStep = document.querySelector('.calculator__step:not([hidden])');
+    
+    const radios = activeStep.querySelectorAll('input[type="radio"]');
+    if (radios.length > 0) {
+      const checked = activeStep.querySelector('input[type="radio"]:checked');
+      if (!checked) {
+        activeStep.querySelectorAll('.calculator__optionCard').forEach(card => {
+          card.classList.remove('shake');
+          void card.offsetWidth;
+          card.classList.add('shake');
+        });
+        return false;
+      }
+    }
+    
+    const required = activeStep.querySelectorAll('[required]');
+    for (const field of required) {
+      if (!field.value.trim()) {
+        field.style.borderColor = 'var(--color-primary)';
+        setTimeout(() => field.style.borderColor = '', 1500);
+        return false;
+      }
+    }
+    
+    return true;
+  }
+
+  btnNext?.addEventListener('click', () => {
+    if (validateCurrentStep() && currentStep < totalSteps) {
+      showStep(currentStep + 1);
+    }
+  });
+
+  btnPrev?.addEventListener('click', () => {
+    if (currentStep > 1) showStep(currentStep - 1);
+  });
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const data = {};
+    form.querySelectorAll('input, textarea').forEach(el => {
+      if (el.name && el.value) data[el.name] = el.value;
+    });
+    form.querySelectorAll('input[type="radio"]:checked').forEach(el => {
+      data[`step_${el.name}`] = el.value;
+    });
+    
+    console.log('Заявка:', data);
+    
+    form.hidden = true;
+    successBlock.hidden = false;
+  });
+
+  requestAnimationFrame(() => {
+    updateProgress();
+  });
+});
+</script>

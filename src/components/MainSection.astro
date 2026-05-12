@@ -7,14 +7,16 @@ import SuccessIcon from "../components/icons/Success.astro";
 ---
 
 <section id="main" class="section main" aria-labelledby="hero-title">
+  <div class="main--decorate"></div>
+  <div class="main--decorate2"></div>
   <div class="container">
     <div class="main__container">
       <div class="main__description">
         <h1 class="main__title" id="hero-title">
-          Производство и монтаж <span>всех видов ворот и заборов</span> под ключ
+          Производство и монтаж <span class="main__decorate">всех видов ворот и заборов</span> в Ставропольском крае под ключ 
         </h1>
         <p class="main__info">
-          Работаем на любом типе грунта. От бюджетного до премиум сегмента
+          Работаем на любом типе грунта. От бюджетных вариантов до премиум сегмента
         </p>
         <ul class="main__list">
           <li class="main__item">
@@ -32,10 +34,11 @@ import SuccessIcon from "../components/icons/Success.astro";
         </ul>
 
         <div class="main__actions">
-          <a class="main__calculateBtn" href="#calculate"
+          <a class="main__calculateBtn" data-ya-click="calculate_hero" aria-label="Перейти к калькулятору стоимости" href="#calculator"
             >Рассчитать стоимость</a
           >
-          <a class="main__worksBtn" href="#works">Наши работы</a>
+          <a class="main__worksBtn"   data-ya-click="works_hero"
++    aria-label="Посмотреть наши работы" href="#works">Наши работы</a>
         </div>
 
         <div class="main__stat" role="group" aria-label="Статистика компании">
@@ -43,10 +46,7 @@ import SuccessIcon from "../components/icons/Success.astro";
             <p class="main__statTitle">500+</p>
             <p class="main__statInfo">Выполненных проектов</p>
           </div>
-          <div class="main__statItem">
-            <p class="main__statTitle">12</p>
-            <p class="main__statInfo">Лет на рынке</p>
-          </div>
+
           <div class="main__statItem">
             <p class="main__statTitle">98%</p>
             <p class="main__statInfo">Довольных клиентов</p>
@@ -56,10 +56,13 @@ import SuccessIcon from "../components/icons/Success.astro";
 
       <div
         class="main__img"
-        role="img"
-        aria-label="Пример готового забора с указанием цены"
       >
-        <Image src={main} alt="Процесс монтажа забора нашими мастерами" />
+        <Image 
+          src={main} 
+          alt="Монтаж забора из профнастила под ключ в [Город]"
+          loading="eager"       
+          fetchpriority="high"  
+        />
         <div class="main__imgInfo">
           <span class="main__imgInfoText">От</span>
           <span class="main__imgInfoPrice">15 000 ₽</span>
@@ -72,8 +75,33 @@ import SuccessIcon from "../components/icons/Success.astro";
 
 <style lang="scss">
   .main {
-    background-color: var(--color-bg-1);
+    position: relative;
+    // background: var(--color-bg-1);
     padding: 4rem 0;
+
+    &--decorate {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    width: 340px;
+    height: 340px;
+    background-color: rgba(255, 205, 130, 0.35); 
+    filter: blur(90px);
+    pointer-events: none; 
+    z-index: 0;
+  }
+
+  &--decorate2 {
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+    width: 460px;
+    height: 460px;
+    background-color: rgba(255, 175, 100, 0.25); 
+    filter: blur(110px);
+    pointer-events: none;
+    z-index: 0;
+  }
 
     &__container {
       display: flex;
@@ -95,6 +123,19 @@ import SuccessIcon from "../components/icons/Success.astro";
       row-gap: 12px;
     }
 
+    &__decorate {
+        background: linear-gradient(
+        to bottom,
+        transparent 50%,     
+        rgb(255, 218, 176) 90%, rgb(255, 188, 112) 100%    
+      );
+      background-repeat: no-repeat;
+      background-size: 100% 40px; 
+      background-position: left bottom; 
+      
+      padding-bottom: -30px; 
+    }
+
     &__item {
       display: flex;
       column-gap: 8px;
@@ -113,12 +154,14 @@ import SuccessIcon from "../components/icons/Success.astro";
     }
 
     &__title {
+      max-width: 450px;
       span {
         color: var(--color-primary);
       }
     }
 
     &__info {
+      max-width: 350px;
       font-size: 22px;
       color: var(--color-gray-700);
     }
@@ -168,8 +211,21 @@ import SuccessIcon from "../components/icons/Success.astro";
       }
     }
 
+    &__calculateBtn,
+    &__worksBtn {
+      width: 100%;
+      max-width: 250px;
+      text-align: center;
+
+      @media screen and (min-width: 500px) {
+        width: max-content;
+      }
+    }
+
+
     &__stat {
       display: flex;
+      flex-wrap: wrap;
       gap: 24px;
       margin-top: 20px;
     }
@@ -178,26 +234,52 @@ import SuccessIcon from "../components/icons/Success.astro";
       display: flex;
       flex-direction: column;
       row-gap: 6px;
-    }
+      padding: 20px;
+      border-radius: 20px;
+      background-color: var(--color-white);
+        box-shadow: 0 12px 24px -6px rgba(0, 0, 0, 0.12);
+      width: 100%;
+  
+      @media screen and (min-width: 500px) {
+        width: max-content;
+      }
+      }
 
     &__statTitle {
       font-size: 34px;
       font-weight: 700;
+      flex-shrink: 0;
       color: var(--color-primary);
     }
 
     &__statInfo {
       font-size: 16px;
+      flex-shrink: 0;
+      text-wrap: nowrap;
       color: var(--color-secondary);
     }
 
     &__img {
-      flex: 1.2;
+      flex: 1.4;
       align-self: center;
       position: relative;
+      max-width: 700px;
       max-height: 600px;
       overflow: hidden;
       border-radius: 20px;
+      box-shadow: 
+  0 10px 20px rgba(0, 0, 0, 0.15),
+  0 25px 50px rgba(0, 0, 0, 0.25);
+
+        &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.35) 0%, transparent 60%);
+        border-radius: 16px;
+        pointer-events: none; 
+        z-index: 1;
+      }
 
       img {
         width: 100%;
@@ -205,7 +287,7 @@ import SuccessIcon from "../components/icons/Success.astro";
         object-fit: cover;
         display: block;
         border-radius: 16px;
-        box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
+
       }
     }
 
@@ -223,8 +305,8 @@ import SuccessIcon from "../components/icons/Success.astro";
       right: 15px;
       display: flex;
       flex-direction: column;
-      row-gap: 10px;
-      padding: 22px 20px;
+      row-gap: 4px;
+      padding: 10px 24px;
       border-radius: 12px;
       width: max-content;
       background-color: var(--color-white);
@@ -232,13 +314,13 @@ import SuccessIcon from "../components/icons/Success.astro";
     }
 
     &__imgInfoPrice {
-      font-size: 32px;
+      font-size: 26px;
       font-weight: 700;
       color: var(--color-primary);
     }
 
     &__imgInfoText {
-      font-size: 16px;
+      font-size: 14px;
       color: var(--color-secondary);
     }
 

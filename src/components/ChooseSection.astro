@@ -2,30 +2,36 @@
 import WatchIcon from "../components/icons/Watch.astro";
 
 const advantages = [
+{
+    title: "Один подрядчик",
+    description: "Полный цикл: замер, производство, монтаж.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-4-4-4 4"/><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 13h6"/></svg>`
+  },
   {
-    title: "Гарантия 5 лет",
-    description: "Официальная гарантия на все виды работ и материалы",
+    title: "Фиксированная цена",
+    description: "Стоимость фиксируется в договоре до начала работ.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M12 18v-6"/><path d="M9 15l3 3 3-3"/><rect x="8" y="2" width="8" height="4" rx="1"/></svg>`
+  },
+  {
+    title: "Гарантия на работы",
+    description: "Официальная гарантия на монтаж и материалы.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>`
+  },
+  {
+    title: "Строители с опытом более 7 лет",
+    description: "Опытные специалисты, которые отвечают за качество.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/></svg>`
   },
   {
     title: "Собственное производство",
-    description: "Контролируем качество на каждом этапе без посредников",
+    description: "Изготавливаем конструкции на собственной линии. Контролируем качество на каждом этапе.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"/><path d="M5 20V8l4-4 4 4v12"/><path d="M13 20V12l4-4 4 4v8"/><path d="M9 12h6"/></svg>`
   },
   {
-    title: "Быстрый монтаж",
-    description: "Установка за 1–3 дня без задержек и скрытых платежей",
-  },
-  {
-    title: "Работа по договору",
-    description: "Фиксируем цену и сроки в официальном договоре",
-  },
-  {
-    title: "Бесплатный замер",
-    description: "Выезд специалиста и расчёт сметы в день обращения",
-  },
-  {
-    title: "Оплата после монтажа",
-    description: "Никаких предоплат. Расчёт только после приёмки работ",
-  },
+    title: "Работаем под ключ",
+    description: "Координируем все этапы. От первого замера до установки ворот.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 15l2 2 4-4"/></svg>`
+  }
 ];
 ---
 
@@ -42,9 +48,7 @@ const advantages = [
         {
           advantages.map((item) => (
             <li class="choose__item">
-              <div class="choose__icon" aria-hidden="true">
-                <WatchIcon />
-              </div>
+              <div class="choose__icon" aria-hidden="true" set:html={item.icon} />
               <h3 class="choose__itemTitle">{item.title}</h3>
               <p class="choose__description">{item.description}</p>
             </li>
@@ -57,11 +61,8 @@ const advantages = [
 
 <style lang="scss">
   .choose {
-    background-color: var(--color-white);
-
-    &__container {
-      text-align: center;
-    }
+    background: var(--color-white);
+    text-align: center;
 
     &__top {
       display: flex;
@@ -75,11 +76,14 @@ const advantages = [
     }
 
     &__icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       width: 32px;
       height: 32px;
       padding: 10px;
       color: var(--color-primary);
-      background-color: var(--color-bg-3);
+      background: var(--color-bg-3);
       border-radius: 12px;
     }
 
@@ -109,11 +113,11 @@ const advantages = [
     &__item {
       display: flex;
       flex-direction: column;
-      row-gap: 10px;
+      row-gap: 4px;
       padding: 20px;
       border-radius: 16px;
       text-align: left;
-      background-color: var(--color-bg-2);
+      background: var(--color-bg-2);
 
       transition: box-shadow 0.25s ease;
 

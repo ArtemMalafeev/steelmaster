@@ -1,5 +1,8 @@
 ---
-// Contacts.astro
+import PhoneIcon from "../components/icons/Phone.astro";
+import MapIcon from "../components/icons/Map.astro";
+import WatchIcon from "../components/icons/Watch.astro";
+import EmailIcon from "../components/icons/Email.astro";
 ---
 
 <section
@@ -18,21 +21,7 @@
         <div class="contacts__info">
           <div class="contact-card">
             <div class="contact-card__icon" aria-hidden="true">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path
-                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
-                ></path>
-              </svg>
+              <div class="contact-card__svg"><PhoneIcon  /></div>
             </div>
             <div class="contact-card__content">
               <h3 class="contact-card__title">Телефон</h3>
@@ -44,48 +33,33 @@
             </div>
           </div>
 
-          <div class="contact-card">
+            <div class="contact-card">
             <div class="contact-card__icon" aria-hidden="true">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path
-                  d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"
-                ></path>
-                <circle cx="12" cy="10" r="3"></circle>
-              </svg>
+              <div class="contact-card__svg"><EmailIcon  /></div>
             </div>
             <div class="contact-card__content">
-              <h3 class="contact-card__title">Адрес офиса</h3>
-              <p class="contact-card__text">Шпаковский р-н, х. Вязники, 92</p>
-              <p class="contact-card__note">Производство и склад</p>
+              <h3 class="contact-card__title">Почта</h3>
+              <a
+                href="mailto:valeriya.k1995@icloud.com"
+                class="contact-card__link contact-card__link--phone"
+                >valeriya.k1995@icloud.com</a
+              >
             </div>
           </div>
 
           <div class="contact-card">
             <div class="contact-card__icon" aria-hidden="true">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <circle cx="12" cy="12" r="10"></circle>
-                <polyline points="12 6 12 12 16 14"></polyline>
-              </svg>
+               <div class="contact-card__svg"><MapIcon  /></div>
+            </div>
+            <div class="contact-card__content">
+              <h3 class="contact-card__title">Адрес офиса</h3>
+              <p class="contact-card__text">Шпаковский р-н, х. Вязники, 92</p>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-card__icon" aria-hidden="true">
+               <div class="contact-card__svg"><WatchIcon /></div>
             </div>
             <div class="contact-card__content">
               <h3 class="contact-card__title">Режим работы</h3>
@@ -191,6 +165,11 @@
     gap: 1rem;
     align-items: flex-start;
     padding: 1rem 0;
+
+    &__svg {
+      width: 24px;
+      height: 24px;
+    }
 
     &__icon {
       display: flex;
@@ -419,11 +398,6 @@
         width: 2.75rem;
         height: 2.75rem;
         border-radius: 0.625rem;
-
-        svg {
-          width: 1.375rem;
-          height: 1.375rem;
-        }
       }
 
       &__link {

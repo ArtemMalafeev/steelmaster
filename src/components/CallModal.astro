@@ -1,0 +1,136 @@
+---
+// src/components/CallModal.astro
+---
+<div class="call-modal-overlay" id="callModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="call-modal-content">
+    <button type="button" class="call-modal-close" aria-label="Закрыть">&times;</button>
+    <h2 class="call-modal-title" id="modal-title">Заказать звонок</h2>
+    <form id="callForm" class="call-modal-form" novalidate>
+      <div class="call-form-group">
+        <label for="modal-name">Ваше имя</label>
+        <input type="text" id="modal-name" name="name" required placeholder="Иван">
+      </div>
+      <div class="call-form-group">
+        <label for="modal-phone">Номер телефона</label>
+        <input type="tel" id="modal-phone" name="phone" required placeholder="+7 (999) 999-99-99">
+      </div>
+      <div class="call-form-group call-form-checkbox">
+        <input type="checkbox" id="modal-policy" name="policy" required>
+        <label for="modal-policy">
+          Я согласен с <a href="/privacy" target="_blank" rel="noopener noreferrer">политикой конфиденциальности</a>
+        </label>
+      </div>
+      <button type="submit" class="call-modal-submit" id="submitBtn" disabled>Отправить заявку</button>
+    </form>
+  </div>
+</div>
+
+<style lang="scss">
+  .call-modal-overlay {
+    position: fixed; inset: 0; background: rgba(0, 0, 0, 0.6);
+    display: flex; align-items: center; justify-content: center; padding: 20px;
+    opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s;
+    z-index: 1000;
+    &.is-active { opacity: 1; visibility: visible; }
+  }
+  .call-modal-content {
+    background: var(--color-white); padding: 30px; border-radius: 12px; max-width: 450px; width: 100%; position: relative;
+    transform: translateY(20px); transition: transform 0.3s;
+    .is-active & { transform: translateY(0); }
+  }
+  .call-modal-close {
+    position: absolute; top: 15px; right: 15px; background: none; border: none; font-size: 28px; cursor: pointer; color: #888; line-height: 1;
+    &:hover { color: var(--color-primary); }
+  }
+  .call-modal-title { margin: 0 0 20px; font-size: 24px; color: var(--color-secondary); }
+  .call-modal-form { display: flex; flex-direction: column; gap: 16px; }
+  .call-form-group { display: flex; flex-direction: column; gap: 6px; }
+  .call-form-group label { font-size: 14px; color: var(--color-gray-700); }
+  .call-form-group input[type="text"],
+  .call-form-group input[type="tel"] {
+    padding: 12px 14px; border: 1px solid #ccc; border-radius: 8px; font-size: 16px; outline: none; transition: border-color 0.2s;
+    &:focus { border-color: var(--color-primary); }
+  }
+  .call-form-checkbox {
+    flex-direction: row; align-items: flex-start; gap: 8px;
+    label { font-size: 13px; line-height: 1.4; }
+    a { color: var(--color-primary); text-decoration: underline; }
+  }
+  .call-modal-submit {
+    padding: 14px; border: none; border-radius: 8px; background: var(--color-primary); color: white;
+    font-size: 16px; font-weight: 500; cursor: pointer; transition: background 0.2s, opacity 0.2s;
+    &:disabled { background: #ccc; cursor: not-allowed; opacity: 0.7; }
+    &:hover:not(:disabled) { background: var(--color-primary-hover); }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('callModal');
+    if (!modal) return;
+
+    const triggers = document.querySelectorAll('[data-modal-trigger="call"]');
+    const closeBtn = modal.querySelector('.call-modal-close');
+    const form = document.getElementById('callForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const nameInput = document.getElementById('modal-name');
+    const phoneInput = document.getElementById('modal-phone');
+    const policyCheckbox = document.getElementById('modal-policy');
+
+    let lastTrigger = null;
+
+    function openModal(trigger) {
+      lastTrigger = trigger;
+      modal.classList.add('is-active');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      nameInput.focus();
+    }
+
+    function closeModal() {
+      modal.classList.remove('is-active');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (lastTrigger) lastTrigger.focus();
+    }
+
+    function checkValidity() {
+      const isValid = nameInput.value.trim().length > 0 && 
+                      phoneInput.value.trim().length > 0 && 
+                      policyCheckbox.checked;
+      submitBtn.disabled = !isValid;
+    }
+
+    triggers.forEach(btn => btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openModal(e.currentTarget);
+    }));
+
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('is-active')) closeModal(); });
+
+    [nameInput, phoneInput, policyCheckbox].forEach(el => {
+      el.addEventListener('input', checkValidity);
+      el.addEventListener('change', checkValidity);
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      submitBtn.textContent = 'Отправка...';
+      submitBtn.disabled = true;
+
+      // TODO: Замените на реальный запрос к вашему бэкенду/сервису
+      // const res = await fetch('/api/callback', { method: 'POST', body: new FormData(form) });
+      await new Promise(r => setTimeout(r, 800)); // Имитация
+
+      if (typeof ym === 'function') ym(109062035, 'reachGoal', 'call_modal_success');
+      
+      alert('Заявка отправлена! Мы перезвоним в ближайшее время.');
+      form.reset();
+      checkValidity();
+      closeModal();
+      submitBtn.textContent = 'Отправить заявку';
+    });
+  });
+</script>
