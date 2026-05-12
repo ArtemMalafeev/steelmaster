@@ -24,37 +24,36 @@ import WhatsAppIcon from "../components/icons/socials/WhatsApp.astro";
         </p>
 
         <div class="footer__socials">
-        <a 
-          href="https://wa.me/79187683088" 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          class="footer__socialLink" 
-          aria-label="Написать в WhatsApp"
-        >
-          <WhatsAppIcon />
-        </a>
+          <a
+            href="https://wa.me/79187683088"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="footer__socialLink"
+            aria-label="Написать в WhatsApp"
+          >
+            <WhatsAppIcon />
+          </a>
 
-        <a 
-          href="https://t.me/stalmasterpro" 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          class="footer__socialLink" 
-          aria-label="Написать в Telegram"
-        >
-          <TelegramIcon />
-        </a>
+          <a
+            href="https://t.me/stalmasterpro"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="footer__socialLink"
+            aria-label="Написать в Telegram"
+          >
+            <TelegramIcon />
+          </a>
 
-        <a 
-          href="https://web.max.ru/261199918" 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          class="footer__socialLink" 
-          aria-label="Написать в Max"
-        >
-          <MaxIcon />
-        </a>
-      </div>
-
+          <a
+            href="https://web.max.ru/261199918"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="footer__socialLink"
+            aria-label="Написать в Max"
+          >
+            <MaxIcon />
+          </a>
+        </div>
       </div>
 
       <nav
@@ -89,10 +88,7 @@ import WhatsAppIcon from "../components/icons/socials/WhatsApp.astro";
 
       <div class="footer__col footer__col--contacts">
         <h4 class="footer__colTitle">Контакты</h4>
-        <address
-          class="footer__address"
-          itemscope
-        >
+        <address class="footer__address" itemscope>
           <ul class="footer__contactList">
             <li class="footer__contactItem">
               <a
@@ -100,22 +96,22 @@ import WhatsAppIcon from "../components/icons/socials/WhatsApp.astro";
                 class="footer__contactLink"
                 itemprop="telephone"
               >
-              <div class="footer__contactIcon">
-                <PhoneIcon />
-              </div>
+                <div class="footer__contactIcon">
+                  <PhoneIcon />
+                </div>
                 <span itemprop="telephone">+7 (918) 768 30 88</span>
               </a>
             </li>
 
             <li class="footer__contactItem">
-                <a
+              <a
                 href="mailto:valeriya.k1995@icloud.com"
                 class="footer__contactLink"
                 itemprop="telephone"
               >
-              <div class="footer__contactIcon">
-                <EmailIcon />
-              </div>
+                <div class="footer__contactIcon">
+                  <EmailIcon />
+                </div>
                 <span itemprop="telephone">valeriya.k1995@icloud.com</span>
               </a>
             </li>
@@ -126,19 +122,21 @@ import WhatsAppIcon from "../components/icons/socials/WhatsApp.astro";
               itemscope
               itemtype="https://schema.org/PostalAddress"
             >
-            <div class="footer__contactIcon">
-              <MapIcon />
-            </div>
+              <div class="footer__contactIcon">
+                <MapIcon />
+              </div>
 
-              <a href="#contacts"  class="footer__contactLink" itemprop="streetAddress"
-                >Шпаковский р-н, х. Вязники, 92</a
+              <a
+                href="#contacts"
+                class="footer__contactLink"
+                itemprop="streetAddress">Шпаковский р-н, х. Вязники, 92</a
               >
             </li>
             <li class="footer__contactItem">
-                <div class="footer__contactIcon">
-                  <WatchIcon />
-                </div>
-    
+              <div class="footer__contactIcon">
+                <WatchIcon />
+              </div>
+
               <time datetime="2024-01-01T09:00/2024-12-31T20:00"
                 >Пн-Пт: 9:00-18:00</time
               >
@@ -175,6 +173,7 @@ import WhatsAppIcon from "../components/icons/socials/WhatsApp.astro";
 <style lang="scss">
   .footer {
     background: var(--color-bg-4);
+    background: var(--color-bg-4);
     color: var(--color-white);
     padding: 3rem 0 1.5rem;
     font-size: 14px;
@@ -206,30 +205,30 @@ import WhatsAppIcon from "../components/icons/socials/WhatsApp.astro";
     }
 
     &__socials {
-        display: flex;
-        align-items: center;
-        gap: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    &__socialLink {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      color: var(--color-white);
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: var(--color-primary);
       }
 
-      &__socialLink {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 18px;
-        height: 18px;
-        color: var(--color-white);
-        transition: color 0.2s ease;
-        
-        &:hover {
-          color: var(--color-primary);
-        }
-
-        svg {
-          width: 100%;
-          height: 100%;
-          display: block;
-        }
+      svg {
+        width: 100%;
+        height: 100%;
+        display: block;
       }
+    }
 
     &__logo {
       display: inline-flex;
@@ -343,8 +342,6 @@ import WhatsAppIcon from "../components/icons/socials/WhatsApp.astro";
       color: var(--color-primary);
     }
 
-
-
     &__contactLink {
       color: inherit;
       text-decoration: none;
@@ -352,12 +349,9 @@ import WhatsAppIcon from "../components/icons/socials/WhatsApp.astro";
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      
-      
 
       &:hover,
       &:focus-visible {
-        
         color: var(--color-primary-hover);
       }
 

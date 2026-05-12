@@ -2,7 +2,6 @@
 import { Image } from "astro:assets";
 import logo from "../images/logo.jpg";
 
-
 import WatchIcon from "../components/icons/Watch.astro";
 import AddressIcon from "../components/icons/Address.astro";
 import PhoneIcon from "../components/icons/Phone.astro";
@@ -13,54 +12,60 @@ import WhatsAppIcon from "../components/icons/socials/WhatsApp.astro";
 
 <header class="header">
   <div class="header__container">
-  <div class="header__top">
-  <div class="container">
-    <div class="header__topRow">
-      <div class="header__info">
-        <div class="header__infoItem">
-          <div class="header__infoIcon" aria-hidden="true"><WatchIcon /></div>
-          <a>Пн-Пт: 9:00-18:00</span>
+    <div class="header__top">
+      <div class="container">
+        <div class="header__topRow">
+          <div class="header__info">
+            <div class="header__infoItem">
+              <div class="header__infoIcon" aria-hidden="true">
+                <WatchIcon />
+              </div>
+              <a>Пн-Пт: 9:00-18:00</a>
+            </div>
+            <div class="header__infoItem">
+              <div class="header__infoIcon" aria-hidden="true">
+                <AddressIcon />
+              </div>
+              <a class="header__address" href="#contacts"
+                >Шпаковский р-н, х. Вязники, 92</a
+              >
+            </div>
+          </div>
+
+          <div class="header__socials">
+            <a
+              href="https://wa.me/79187683088"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="header__socialLink"
+              aria-label="Написать в WhatsApp"
+            >
+              <WhatsAppIcon />
+            </a>
+
+            <a
+              href="https://t.me/stalmasterpro"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="header__socialLink"
+              aria-label="Написать в Telegram"
+            >
+              <TelegramIcon />
+            </a>
+
+            <a
+              href="https://web.max.ru/261199918"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="header__socialLink"
+              aria-label="Написать в Max"
+            >
+              <MaxIcon />
+            </a>
+          </div>
         </div>
-        <div class="header__infoItem">
-          <div class="header__infoIcon" aria-hidden="true"><AddressIcon /></div>
-          <a class="header__address" href="#contacts">Шпаковский р-н, х. Вязники, 92</a>
-        </div>
-      </div>
-
-      <div class="header__socials">
-        <a 
-          href="https://wa.me/79187683088" 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          class="header__socialLink" 
-          aria-label="Написать в WhatsApp"
-        >
-          <WhatsAppIcon />
-        </a>
-
-        <a 
-          href="https://t.me/stalmasterpro" 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          class="header__socialLink" 
-          aria-label="Написать в Telegram"
-        >
-          <TelegramIcon />
-        </a>
-
-        <a 
-          href="https://web.max.ru/261199918" 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          class="header__socialLink" 
-          aria-label="Написать в Max"
-        >
-          <MaxIcon />
-        </a>
       </div>
     </div>
-  </div>
-</div>
     <div class="header__bottom">
       <div class="container">
         <div class="header__bottomContainer">
@@ -74,16 +79,16 @@ import WhatsAppIcon from "../components/icons/socials/WhatsApp.astro";
             </div>
           </div>
 
-        <nav class="header__nav nav" id="mainNav">
+          <nav class="header__nav nav" id="mainNav">
             <a href="#choose" class="nav__link">Преимущества</a>
             <a href="#services" class="nav__link">Услуги</a>
             <a href="#works" class="nav__link">Примеры работ</a>
             <a href="#reviews" class="nav__link">Отзывы</a>
             <a href="#calculator" class="nav__link">Калькулятор</a>
-            
+
             <a class="nav__phone" href="tel:+79187683088">
               <div style="width: 18px; height: 18px">
-                <PhoneIcon class="nav__phoneIcon"  />
+                <PhoneIcon class="nav__phoneIcon" />
               </div>
               <span>+7 (918) 768 30 88</span>
             </a>
@@ -94,7 +99,9 @@ import WhatsAppIcon from "../components/icons/socials/WhatsApp.astro";
               <div class="header__phoneIcon" aria-hidden="true">
                 <PhoneIcon />
               </div>
-              <a class="header__phoneNumber"  href="tel:+79991234567">+7 (918) 768 30 88</a>
+              <a class="header__phoneNumber" href="tel:+79991234567"
+                >+7 (918) 768 30 88</a
+              >
             </div>
           </div>
 
@@ -150,7 +157,7 @@ import WhatsAppIcon from "../components/icons/socials/WhatsApp.astro";
         gap: 16px;
       }
 
-       &__socials {
+      &__socials {
         display: flex;
         align-items: center;
         gap: 10px;
@@ -164,7 +171,7 @@ import WhatsAppIcon from "../components/icons/socials/WhatsApp.astro";
         height: 18px;
         color: var(--color-white);
         transition: color 0.2s ease;
-        
+
         &:hover {
           color: var(--color-primary);
         }
@@ -188,15 +195,15 @@ import WhatsAppIcon from "../components/icons/socials/WhatsApp.astro";
         gap: 6px;
       }
 
-       &__address {
+      &__address {
         cursor: pointer;
         text-decoration: none;
         color: var(--color-white);
-        transition: all .25s ease;
+        transition: all 0.25s ease;
         &:hover {
-            color: var(--color-primary);
-          }
-       }
+          color: var(--color-primary);
+        }
+      }
 
       &__infoIcon {
         width: 18px;
@@ -215,7 +222,7 @@ import WhatsAppIcon from "../components/icons/socials/WhatsApp.astro";
       &__phoneNumber {
         color: var(--color-gray-700);
         text-decoration: none;
-        transition: all .25s ease;
+        transition: all 0.25s ease;
 
         &:hover {
           color: var(--color-primary);
@@ -324,6 +331,8 @@ import WhatsAppIcon from "../components/icons/socials/WhatsApp.astro";
       gap: 24px;
       margin-left: auto;
       margin-right: auto;
+      margin-left: auto;
+      margin-right: auto;
     }
     .nav__link {
       font-weight: 500;
@@ -347,8 +356,6 @@ import WhatsAppIcon from "../components/icons/socials/WhatsApp.astro";
       height: 20px;
       color: var(--color-primary);
     }
-
-
 
     @media (max-width: 1250px) {
       .header {
