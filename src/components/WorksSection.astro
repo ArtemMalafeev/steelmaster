@@ -1,88 +1,228 @@
 ---
 import { Image } from "astro:assets";
-import main from "../images/main.jpg";
+
+import shutter1 from '../images/works/shutter/1.jpeg'
+import shutter2 from '../images/works/shutter/2.jpeg'
+import shutter3 from '../images/works/shutter/3.jpeg'
+import shutter4 from '../images/works/shutter/4.jpeg'
+import shutter5 from '../images/works/shutter/5.jpeg'
+import shutter6 from '../images/works/shutter/6.jpg'
+import shutter7 from '../images/works/shutter/7.jpg'
+import shutter8 from '../images/works/shutter/8.jpg'
+import shutter9 from '../images/works/shutter/9.jpg'
+
+
+import fence1 from '../images/works/fence/1.jpg'
+import fence2 from '../images/works/fence/2.jpg'
+import fence3 from '../images/works/fence/3.jpg'
+import fence4 from '../images/works/fence/4.jpg'
+import fence5 from '../images/works/fence/5.jpg'
+import fence6 from '../images/works/fence/6.webp'
+
+import corrugated1 from '../images/works/corrugated/1.jpg'
+import corrugated2 from '../images/works/corrugated/2.png'
+import corrugated3 from '../images/works/corrugated/3.png'
+import corrugated4 from '../images/works/corrugated/4.jpg'
+import corrugated5 from '../images/works/corrugated/5.jpg'
+
+
+import siding1 from '../images/works/siding/1.jpeg'
+import siding2 from '../images/works/siding/2.jpeg'
+import siding3 from '../images/works/siding/3.jpg'
+import siding4 from '../images/works/siding/4.jpg'
+import siding5 from '../images/works/siding/5.jpg'
+import siding6 from '../images/works/siding/6.jpg'
+import siding7 from '../images/works/siding/7.jpg'
+
+import premium1 from '../images/works/premium/1.jpg'
+import premium2 from '../images/works/premium/2.jpg'
+import premium3 from '../images/works/premium/3.jpg'
+import premium4 from '../images/works/premium/4.jpg'
+import premium5 from '../images/works/premium/5.jpeg'
+import premium6 from '../images/works/premium/6.jpeg'
+
 
 const worksData = [
   {
     id: 1,
-    category: "gates",
-    title: "Откатные ворота Pro",
-    price: "45 000 ₽",
-    area: "12 м²",
-    desc: "Автоматические откатные ворота с усиленным каркасом и тихим приводом",
-    image: main,
+    title: "Жалюзи",
+    category: "shutter",
+    image: shutter1,
+    // price: "45 000 ₽",
+    // area: "12 м²",
+    // desc: "Автоматические откатные с усиленным каркасом и тихим приводом",
   },
   {
     id: 2,
-    category: "gates",
-    title: "Распашные ворота Classic",
-    price: "38 000 ₽",
-    area: "10 м²",
-    desc: "Классическое решение с встроенной калиткой и антикоррозийным покрытием",
-    image: main,
+    title: "Штакетник",
+    category: "fence",
+    image: fence1,
   },
-  {
+   {
     id: 3,
-    category: "fences",
-    title: "Забор из профнастила",
-    price: "15 000 ₽",
-    area: "45 м²",
-    desc: "Быстрый монтаж на свайном фундаменте, гарантия 5 лет",
-    image: main,
+    title: "Профнастил",
+    category: "corrugated",
+    image: corrugated1,
   },
-  {
-    id: 4,
-    category: "fences",
-    title: "Евроштакетник М-образный",
-    price: "22 000 ₽",
-    area: "60 м²",
-    desc: "Эстетичный вид, двустороннее полимерное покрытие, продуваемость 50%",
-    image: main,
-  },
-  {
+ {
     id: 5,
-    category: "gates",
-    title: "Секционные ворота",
-    price: "55 000 ₽",
-    area: "9 м²",
-    desc: "Теплоизоляция панелей, встроенная система защиты от защемления",
-    image: main,
+    title: "Сайдинг",
+    category: "siding",
+    image: siding4,
   },
-  {
+{
     id: 6,
-    category: "fences",
-    title: "Кованый забор с элементами",
-    price: "35 000 ₽",
-    area: "30 м²",
-    desc: "Индивидуальный эскиз, горячая ковка, монтаж за 2 дня",
-    image: main,
+    title: "Премиум",
+    category: "premium",
+    image: premium1,
   },
+
+
   {
     id: 7,
-    category: "gates",
-    title: "Откатные ворота Lite",
-    price: "40 000 ₽",
-    area: "11 м²",
-    desc: "Бюджетное решение для дачных участков с ручным управлением",
-    image: main,
+    title: "Жалюзи",
+    category: "shutter",
+    image: shutter2,
+    
   },
-  {
+   {
     id: 8,
-    category: "fences",
-    title: "Забор из сетки рабицы",
-    price: "8 000 ₽",
-    area: "50 м²",
-    desc: "Экономичный вариант для ограждения периметра и зонирования",
-    image: main,
+    title: "Жалюзи",
+    category: "shutter",
+    image: shutter3,
+    
+  },
+   {
+    id: 9,
+    title: "Жалюзи",
+    category: "shutter",
+    image: shutter4,
+    
+  },
+   {
+    id: 10,
+    title: "Жалюзи",
+    category: "shutter",
+    image: shutter5,
+    
+  },
+   {
+    id: 11,
+    title: "Жалюзи",
+    category: "shutter",
+    image: shutter6,
+    
+  },
+   {
+    id: 12,
+    title: "Жалюзи",
+    category: "shutter",
+    image: shutter7,
+    
+  },
+   {
+    id: 13,
+    title: "Жалюзи",
+    category: "shutter",
+    image: shutter8,
+    
   },
   {
-    id: 9,
-    category: "gates",
-    title: "Гаражные роллеты",
-    price: "48 000 ₽",
-    area: "8 м²",
-    desc: "Утепленные ламели, автоматика в подарок, шумоизоляция",
-    image: main,
+    id: 14,
+    title: "Жалюзи",
+    category: "shutter",
+    image: shutter9,
+  },
+  {
+    id: 15,
+    title: "Штакетник",
+    category: "fence",
+    image: fence2,
+  },
+  {
+    id: 16,
+    title: "Штакетник",
+    category: "fence",
+    image: fence3,
+  },
+  {
+    id: 17,
+    title: "Штакетник",
+    category: "fence",
+    image: fence4,
+  },
+  {
+    id: 18,
+    title: "Штакетник",
+    category: "fence",
+    image: fence5,
+  },
+  {
+    id: 19,
+    title: "Штакетник",
+    category: "fence",
+    image: fence6,
+  },
+  {
+    id: 20,
+    title: "Профнастил",
+    category: "corrugated",
+    image: corrugated2,
+  },
+  {
+    id: 21,
+    title: "Профнастил",
+    category: "corrugated",
+    image: corrugated3,
+  },
+  {
+    id: 22,
+    title: "Профнастил",
+    category: "corrugated",
+    image: corrugated4,
+  },
+  {
+    id: 23,
+    title: "Профнастил",
+    category: "corrugated",
+    image: corrugated5,
+  },
+
+   {
+    id: 24,
+    title: "Сайдинг",
+    category: "siding",
+    image: siding1,
+  },
+   {
+    id: 25,
+    title: "Сайдинг",
+    category: "siding",
+    image: siding2,
+  },
+   {
+    id: 26,
+    title: "Сайдинг",
+    category: "siding",
+    image: siding3,
+  },
+   {
+    id: 27,
+    title: "Сайдинг",
+    category: "siding",
+    image: siding5,
+  },
+   {
+    id: 28,
+    title: "Сайдинг",
+    category: "siding",
+    image: siding6,
+  },
+   {
+    id: 29,
+    title: "Сайдинг",
+    category: "siding",
+    image: siding7,
   },
 ];
 ---
@@ -110,16 +250,40 @@ const worksData = [
         >
         <button
           class="portfolio__tab"
-          data-filter="gates"
+          data-filter="shutter"
           role="tab"
-          aria-selected="false">Ворота</button
+          aria-selected="false">Жалюзи</button
         >
         <button
+          class="portfolio__tab"
+          data-filter="fence"
+          role="tab"
+          aria-selected="false">Штакетник</button
+        >
+        <button
+          class="portfolio__tab"
+          data-filter="corrugated"
+          role="tab"
+          aria-selected="false">Профнастил</button
+        >
+        <button
+          class="portfolio__tab"
+          data-filter="siding"
+          role="tab"
+          aria-selected="false">Сайдинг</button
+        >
+        <button
+          class="portfolio__tab"
+          data-filter="premium"
+          role="tab"
+          aria-selected="false">Ворота премиум-класса</button
+        >
+        <!-- <button
           class="portfolio__tab"
           data-filter="fences"
           role="tab"
           aria-selected="false">Заборы</button
-        >
+        > -->
       </div>
 
       <ul class="portfolio__list" id="portfolio-list">
@@ -134,14 +298,14 @@ const worksData = [
                   width="600"
                   height="450"
                 />
-                <div class="portfolio__overlay">
+                {/* <div class="portfolio__overlay">
                   <h3 class="portfolio__itemTitle">{work.title}</h3>
                   <p class="portfolio__itemDesc">{work.desc}</p>
                   <div class="portfolio__itemMeta">
                     <span class="portfolio__itemPrice">{work.price}</span>
                     <span class="portfolio__itemArea">{work.area}</span>
                   </div>
-                </div>
+                </div> */}
               </div>
             </li>
           ))

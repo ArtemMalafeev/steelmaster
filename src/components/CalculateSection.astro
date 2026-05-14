@@ -12,6 +12,8 @@ import img6 from "../images/calculator/6.png";
 import img7 from "../images/calculator/7.png";
 import img8 from "../images/calculator/8.png";
 import img9 from "../images/calculator/9.png";
+import img10 from "../images/calculator/10.jpeg";
+import img11 from "../images/calculator/11.jpg";
 
 import defaultImg from "../images/calculator/default.png";
 
@@ -19,6 +21,7 @@ const steps = [
   {
     id: 1,
     title: "Какой забор хотели бы установить ?",
+    gridColumns: 2,
     // description: "Выберите тип конструкции",
     options: [
       {
@@ -42,6 +45,7 @@ const steps = [
   {
     id: 2,
     title: "Какой цвет забора вам бы хотелось ?",
+     gridColumns: 3,
     // description: "Какой тип забора вам нужен?",
     options: [
       {
@@ -78,69 +82,42 @@ const steps = [
   },
   {
     id: 3,
-    title: "Материал",
+    title: "Выберите ворота ?",
+     gridColumns: 3,
     // description: "Из чего будет конструкция?",
     options: [
       {
-        id: "metal",
-        label: "Металл",
-        desc: "Профнастил, евроштакетник",
-        img: main,
+        id: "option11",
+        label: "Распашные ворота",
+        img: img10,
       },
       {
-        id: "wood",
-        label: "Дерево",
-        desc: "Натуральная доска, брус",
-        img: main,
+        id: "option12",
+        label: "Откатные ворота",
+        img: img11,
       },
-      { id: "polymer", label: "Полимер", desc: "ПВХ, композит", img: main },
       {
-        id: "stone",
-        label: "Камень/Кирпич",
-        desc: "Цоколь, столбы",
-        img: main,
+        id: "option13",
+        label: "Не нужны ворота",
+        img: defaultImg,
       },
     ],
   },
   {
     id: 4,
-    title: "Длина забора",
+    title: "Выберите площадь забора ?",
+     gridColumns: 3,
     // description: "Выберите примерный метраж",
     options: [
-      { id: "to10", label: "до 10 м", desc: "Небольшой участок", img: main },
-      { id: "10-20", label: "10–20 м", desc: "Средний размер", img: main },
-      { id: "20-50", label: "20–50 м", desc: "Большой периметр", img: main },
-      { id: "50+", label: "50+ м", desc: "Крупный объект", img: main },
+      { id: "option14", label: "до 1500 кв.м" },
+      { id: "option15", label: "от 1000 до 1500 кв.м" },
+      { id: "option16", label: "от 1500 до 2000 кв.м" },
+      { id: "option17", label: "от 2000 до 2500 кв.м" },
+      { id: "option18", label: "от 2500 до 3000 кв.м" },
+      { id: "option19", label: "свыше 3000 кв.м" },
     ],
   },
-  {
-    id: 5,
-    title: "Контакты",
-    // description: "Куда отправить расчёт?",
-    isFormStep: true,
-    formFields: [
-      {
-        id: "name",
-        label: "Ваше имя",
-        type: "text",
-        placeholder: "Иван",
-        required: true,
-      },
-      {
-        id: "phone",
-        label: "Телефон",
-        type: "tel",
-        placeholder: "+7 (___) ___-__-__",
-        required: true,
-      },
-      {
-        id: "comment",
-        label: "Комментарий",
-        type: "textarea",
-        placeholder: "Доп. пожелания",
-      },
-    ],
-  },
+
 ];
 ---
 
@@ -173,27 +150,35 @@ const steps = [
               {/* <p class="calculator__desc">{step.description}</p> */}
 
               {step.options ? (
-                <div class="calculator__options">
-                  {step.options.map((opt) => (
-                    <label class="calculator__option">
-                      <input
-                        type="radio"
-                        name={`step-${step.id}`}
-                        value={opt.id}
-                        class="calculator__optionInput"
-                      />
-                      <div class="calculator__optionCard">
-                        <div class="calculator__optionImage">
-                          <Image src={opt.img} alt={opt.label} loading="lazy" />
-                        </div>
-                        <div class="calculator__optionContent">
-                          <h4 class="calculator__optionLabel">{opt.label}</h4>
-                        </div>
-                      </div>
-                    </label>
-                  ))}
-                </div>
-              ) : step.formFields ? (
+  <div 
+    class={`calculator__options calculator__options--cols-${step.gridColumns || 2}`}
+  >
+    {step.options.map((opt) => (
+ <label class="calculator__option">
+  <input
+    type="radio"
+    name={`step-${step.id}`}
+    value={opt.id}
+    class="calculator__optionInput"
+  />
+  <div class={`calculator__optionCard ${!opt.img ? 'calculator__optionCard--text-only' : ''}`}>
+    
+    {/* Изображение — только если оно есть */}
+    {opt.img && (
+      <div class="calculator__optionImage">
+        <Image src={opt.img} alt={opt.label} loading="lazy" />
+      </div>
+    )}
+    
+    <div class="calculator__optionContent">
+      <h4 class="calculator__optionLabel">{opt.label}</h4>
+      {opt.desc && <p class="calculator__optionDesc">{opt.desc}</p>}
+    </div>
+  </div>
+</label>
+    ))}
+  </div>
+) : step.formFields ? (
                 <div class="calculator__formFields">
                   {step.formFields.map((field) => (
                     <div class="calculator__formField">
@@ -321,7 +306,7 @@ const steps = [
     }
 
     &__container {
-      max-width: 720px;
+      max-width: 850px;
       margin: 0 auto;
       margin-top: 24px;
       background: var(--color-white);
@@ -395,13 +380,31 @@ const steps = [
       line-height: 1.3;
     }
 
-    &__options {
-      margin-top: 14px;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-      margin-bottom: 16px;
-    }
+ &__options {
+  margin-top: 14px;
+  display: grid;
+  gap: 10px;
+  margin-bottom: 16px;
+  
+  // По умолчанию — 2 колонки
+  grid-template-columns: repeat(2, 1fr);
+  
+  // Модификаторы для количества колонок
+  &--cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  &--cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+// Адаптив: на мобильных всегда 1 колонка
+@media (max-width: 576px) {
+  &__options {
+    grid-template-columns: 1fr !important;
+    gap: 8px;
+  }
+}
 
     &__optionInput {
       position: absolute;
@@ -440,6 +443,22 @@ const steps = [
       display: flex; /* ⭐ Центрируем картинку */
       align-items: center;
       justify-content: center;
+
+       &--text-only {
+    justify-content: center;
+    padding: 16px 12px;
+    min-height: 80px;
+    
+    .calculator__optionContent {
+      text-align: center;
+    }
+    
+    .calculator__optionLabel {
+      font-size: 14px;
+      white-space: normal;
+      line-height: 1.3;
+    }
+  }
 
       /* ⭐ Стили для Astro Image */
       :global(img) {
@@ -481,6 +500,54 @@ const steps = [
       flex-direction: column;
       gap: 4px;
     }
+
+    // Если есть изображение — высота фиксированная
+&__optionImage {
+  width: 100%;
+  height: 140px; // ← уменьшил для компактности
+  flex-shrink: 0;
+  border-radius: 8px;
+  background: var(--color-bg-3);
+  margin-bottom: 8px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  :global(img) {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block;
+    border-radius: 8px;
+  }
+}
+
+// Адаптив: на мобильных карточки с картинками — горизонтальные
+@media (max-width: 576px) {
+  &__optionCard:not(&__optionCard--text-only) {
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+    
+    .calculator__optionImage {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 0;
+      margin-right: 12px;
+    }
+    
+    .calculator__optionContent {
+      text-align: left;
+      flex: 1;
+    }
+  }
+  
+  // Текст-карточки остаются как есть, но с отступами
+  &__optionCard--text-only {
+    padding: 12px;
+  }
+}
 
     &__formLabel {
       font-size: 13px;
@@ -663,6 +730,7 @@ const steps = [
     const steps = document.querySelectorAll(".calculator__step");
     const totalSteps = steps.length;
 
+    // Прогресс-бар — опционально, с проверкой на существование
     const progressFill = document.getElementById("progressFill");
     const stepCurrent = document.getElementById("stepCurrent");
     const stepPercent = document.getElementById("stepPercent");
@@ -676,19 +744,28 @@ const steps = [
     let currentStep = 1;
 
     function updateProgress() {
-      const percent = Math.round((currentStep / totalSteps) * 100);
-      progressFill.style.width = `${percent}%`;
-      stepCurrent.textContent = currentStep;
-      stepPercent.textContent = `${percent}%`;
+      // Обновляем прогресс только если элементы есть в DOM
+      if (progressFill && stepCurrent && stepPercent) {
+        const percent = Math.round((currentStep / totalSteps) * 100);
+        progressFill.style.width = `${percent}%`;
+        stepCurrent.textContent = currentStep;
+        stepPercent.textContent = `${percent}%`;
+      }
 
-      btnPrev.disabled = currentStep === 1;
+      // Кнопка "Назад"
+      if (btnPrev) {
+        btnPrev.disabled = currentStep === 1;
+      }
 
-      if (currentStep === totalSteps) {
-        btnNext.hidden = true;
-        btnSubmit.hidden = false;
-      } else {
-        btnNext.hidden = false;
-        btnSubmit.hidden = true;
+      // Переключение кнопок Далее/Отправить
+      if (btnNext && btnSubmit) {
+        if (currentStep === totalSteps) {
+          btnNext.hidden = true;
+          btnSubmit.hidden = false;
+        } else {
+          btnNext.hidden = false;
+          btnSubmit.hidden = true;
+        }
       }
     }
 
@@ -698,28 +775,38 @@ const steps = [
       });
       currentStep = stepNum;
       updateProgress();
+      
+      // Скролл к началу формы при смене шага (удобно на мобильных)
+      const formContainer = document.querySelector(".calculator__form");
+      if (formContainer) {
+        formContainer.scrollTo({ top: 0, behavior: "smooth" });
+      }
     }
 
     function validateCurrentStep() {
       const activeStep = document.querySelector(
         ".calculator__step:not([hidden])",
       );
+      if (!activeStep) return false;
 
+      // Валидация радио-кнопок
       const radios = activeStep.querySelectorAll('input[type="radio"]');
       if (radios.length > 0) {
         const checked = activeStep.querySelector('input[type="radio"]:checked');
         if (!checked) {
+          // Анимация "тряски" для карточек
           activeStep
             .querySelectorAll(".calculator__optionCard")
             .forEach((card) => {
               card.classList.remove("shake");
-              void card.offsetWidth;
+              void card.offsetWidth; // reflow для перезапуска анимации
               card.classList.add("shake");
             });
           return false;
         }
       }
 
+      // Валидация обязательных полей
       const required = activeStep.querySelectorAll("[required]");
       for (const field of required) {
         if (!field.value.trim()) {
@@ -732,33 +819,49 @@ const steps = [
       return true;
     }
 
+    // Кнопка "Далее"
     btnNext?.addEventListener("click", () => {
       if (validateCurrentStep() && currentStep < totalSteps) {
         showStep(currentStep + 1);
       }
     });
 
+    // Кнопка "Назад" — теперь работает ✅
     btnPrev?.addEventListener("click", () => {
-      if (currentStep > 1) showStep(currentStep - 1);
+      if (currentStep > 1) {
+        showStep(currentStep - 1);
+      }
     });
 
+    // Отправка формы
     form?.addEventListener("submit", (e) => {
       e.preventDefault();
 
       const data = {};
+      
+      // Собираем текстовые поля
       form.querySelectorAll("input, textarea").forEach((el) => {
         if (el.name && el.value) data[el.name] = el.value;
       });
+      
+      // Собираем выбранные радио-кнопки
       form.querySelectorAll('input[type="radio"]:checked').forEach((el) => {
-        data[`step_${el.name}`] = el.value;
+        data[`step_${el.name.split('-')[1]}`] = el.value;
       });
 
       console.log("Заявка:", data);
 
-      form.hidden = true;
-      successBlock.hidden = false;
+      // Показываем блок успеха
+      if (form && successBlock) {
+        form.hidden = true;
+        successBlock.hidden = false;
+      }
+      
+      // Здесь можно добавить реальную отправку на сервер:
+      // await fetch('/api/submit', { method: 'POST', body: JSON.stringify(data) })
     });
 
+    // Инициализация
     requestAnimationFrame(() => {
       updateProgress();
     });
