@@ -162,7 +162,7 @@ const finalStep = {
 <section class="calculator" id="calculator">
   <div class="container">
     <div class="calculator__header">
-      <h2 class="calculator__title">
+      <h2 id="calculator-title" class="calculator__title">
         Рассчитайте стоимость забора за 1 минуту
       </h2>
       <p class="calculator__subtitle">
@@ -474,20 +474,10 @@ const finalStep = {
       letter-spacing: 0.5px;
     }
 
-    &__title {
-      font-size: clamp(28px, 5vw, 42px);
-      font-weight: 800;
-      color: var(--color-secondary);
-      margin: 0 0 16px;
-      line-height: 1.2;
-    }
-
     &__subtitle {
-      font-size: 18px;
-      color: var(--color-gray-700);
-      margin: 0;
-      max-width: 500px;
-      margin-inline: auto;
+      margin-top: 20px;
+      font-size: 22px;
+      color: var(--color-secondary);
     }
 
     &__wrapper {
