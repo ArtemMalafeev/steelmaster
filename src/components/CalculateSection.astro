@@ -20,123 +20,176 @@ import defaultImg from "../images/calculator/default.png";
 const steps = [
   {
     id: 1,
-    title: "Какой забор хотели бы установить ?",
+    title: "Выберите тип забора",
+    subtitle: "Какой забор вам нужен?",
     gridColumns: 2,
-    // description: "Выберите тип конструкции",
     options: [
       {
-        id: "option1",
+        id: "Забор жалюзи",
         label: "Забор жалюзи",
         img: img1,
       },
       {
-        id: "option2",
-        label: "Забор из штакетника",
+        id: "Штакетник",
+        label: "Штакетник",
         img: img2,
       },
-      { id: "option3", label: "Забор рабица", img: img3 },
       {
-        id: "option4",
-        label: "Забор из профнастила",
+        id: "Рабица",
+        label: "Рабица",
+        img: img3,
+      },
+      {
+        id: "Профнастил",
+        label: "Профнастил",
         img: img4,
       },
     ],
   },
   {
     id: 2,
-    title: "Какой цвет забора вам бы хотелось ?",
-     gridColumns: 3,
-    // description: "Какой тип забора вам нужен?",
+    title: "Выберите цвет",
+    subtitle: "Какой цвет вам нравится?",
+    gridColumns: 3,
     options: [
       {
-        id: "option5",
+        id: "Черный",
         label: "Черный",
         img: img5,
+        color: "#1a1a1a",
       },
       {
-        id: "option6",
+        id: "Коричневый",
         label: "Коричневый",
         img: img6,
+        color: "#8B4513",
       },
       {
-        id: "option7",
+        id: "Серый",
         label: "Серый",
         img: img7,
+        color: "#808080",
       },
       {
-        id: "option8",
+        id: "Красный",
         label: "Красный",
         img: img8,
+        color: "#CC0000",
       },
       {
-        id: "option9",
-        label: "Граффит",
+        id: "Графит",
+        label: "Графит",
         img: img9,
+        color: "#36454F",
       },
       {
-        id: "option10",
-        label: "Другое",
+        id: "Другой цвет",
+        label: "Другой",
         img: defaultImg,
+        color: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
       },
     ],
   },
   {
     id: 3,
-    title: "Выберите ворота ?",
-     gridColumns: 3,
-    // description: "Из чего будет конструкция?",
+    title: "Нужны ли ворота?",
+    subtitle: "Выберите тип ворот или откажитесь от них",
+    gridColumns: 3,
     options: [
       {
-        id: "option11",
-        label: "Распашные ворота",
+        id: "Распашные",
+        label: "Распашные",
         img: img10,
       },
       {
-        id: "option12",
-        label: "Откатные ворота",
+        id: "Откатные",
+        label: "Откатные",
         img: img11,
       },
       {
-        id: "option13",
-        label: "Не нужны ворота",
+        id: "Без ворот",
+        label: "Без ворот",
         img: defaultImg,
       },
     ],
   },
   {
     id: 4,
-    title: "Выберите площадь забора ?",
-     gridColumns: 3,
-    // description: "Выберите примерный метраж",
+    title: "Укажите площадь",
+    subtitle: "Примерная площадь забора",
+    gridColumns: 3,
     options: [
-      { id: "option14", label: "до 1500 кв.м" },
-      { id: "option15", label: "от 1000 до 1500 кв.м" },
-      { id: "option16", label: "от 1500 до 2000 кв.м" },
-      { id: "option17", label: "от 2000 до 2500 кв.м" },
-      { id: "option18", label: "от 2500 до 3000 кв.м" },
-      { id: "option19", label: "свыше 3000 кв.м" },
+      { id: "до 1500 м²", label: "до 1500 м²" },
+      { id: "1000-1500 м²", label: "1000-1500 м²" },
+      { id: "1500-2000 м²", label: "1500-2000 м²" },
+      { id: "2000-2500 м²", label: "2000-2500 м²" },
+      { id: "2500-3000 м²", label: "2500-3000 м²" },
+      { id: "свыше 3000 м²", label: "свыше 3000 м²" },
     ],
   },
-
 ];
+
+const finalStep = {
+  id: 5,
+  title: "Ваши контакты",
+  subtitle: "Оставьте данные для связи",
+  fields: [
+    {
+      id: "name",
+      label: "Ваше имя",
+      type: "text",
+      placeholder: "Иван Иванов",
+      required: true,
+    },
+    {
+      id: "phone",
+      label: "Телефон",
+      type: "tel",
+      placeholder: "+7 (999) 999-99-99",
+      required: true,
+    },
+    {
+      id: "comment",
+      label: "Комментарий",
+      type: "textarea",
+      placeholder: "Дополнительные пожелания...",
+      required: false,
+    },
+  ],
+};
 ---
 
-<section
-  id="calculator"
-  class="section calculator"
-  aria-labelledby="calculator-title"
->
+<section class="calculator" id="calculator">
   <div class="container">
-    <div class="calculator__top">
-      <h2 id="calculator-title" class="calculator__title">
-        Рассчитайте стоимость забора
+    <div class="calculator__header">
+      <h2 class="calculator__title">
+        Рассчитайте стоимость забора за 1 минуту
       </h2>
       <p class="calculator__subtitle">
-        Ответьте на 5 простых вопросов и получите расчет
+        Ответьте на 5 простых вопросов и получите точный расчет
       </p>
     </div>
 
-    <div class="calculator__container">
+    <div class="calculator__wrapper">
+      <!-- Прогресс-бар -->
+      <div class="calculator__progress">
+        <div class="calculator__progress-steps">
+          {
+            [...Array(5)].map((_, i) => (
+              <div class="calculator__progress-step" data-step={i + 1}>
+                <span class="calculator__progress-number">{i + 1}</span>
+                <span class="calculator__progress-label">
+                  {i === 4 ? "Контакты" : `Шаг ${i + 1}`}
+                </span>
+              </div>
+            ))
+          }
+        </div>
+        <div class="calculator__progress-bar">
+          <div class="calculator__progress-fill" id="progressBar"></div>
+        </div>
+      </div>
+
       <!-- Форма -->
       <form id="calcForm" class="calculator__form">
         {
@@ -146,106 +199,213 @@ const steps = [
               data-step={step.id}
               hidden={index !== 0}
             >
-              <h3 class="calculator__titleStep">{step.title}</h3>
-              {/* <p class="calculator__desc">{step.description}</p> */}
+              <div class="calculator__step-header">
+                <h3 class="calculator__step-title">{step.title}</h3>
+                {step.subtitle && (
+                  <p class="calculator__step-subtitle">{step.subtitle}</p>
+                )}
+              </div>
 
-              {step.options ? (
-  <div 
-    class={`calculator__options calculator__options--cols-${step.gridColumns || 2}`}
-  >
-    {step.options.map((opt) => (
- <label class="calculator__option">
-  <input
-    type="radio"
-    name={`step-${step.id}`}
-    value={opt.id}
-    class="calculator__optionInput"
-  />
-  <div class={`calculator__optionCard ${!opt.img ? 'calculator__optionCard--text-only' : ''}`}>
-    
-    {/* Изображение — только если оно есть */}
-    {opt.img && (
-      <div class="calculator__optionImage">
-        <Image src={opt.img} alt={opt.label} loading="lazy" />
-      </div>
-    )}
-    
-    <div class="calculator__optionContent">
-      <h4 class="calculator__optionLabel">{opt.label}</h4>
-      {opt.desc && <p class="calculator__optionDesc">{opt.desc}</p>}
-    </div>
-  </div>
-</label>
-    ))}
-  </div>
-) : step.formFields ? (
-                <div class="calculator__formFields">
-                  {step.formFields.map((field) => (
-                    <div class="calculator__formField">
-                      <label class="calculator__formLabel" for={field.id}>
-                        {field.label}
-                      </label>
-                      {field.type === "textarea" ? (
-                        <textarea
-                          id={field.id}
-                          name={field.id}
-                          class="calculator__formInput"
-                          placeholder={field.placeholder}
-                          required={field.required}
-                        />
-                      ) : (
-                        <input
-                          id={field.id}
-                          name={field.id}
-                          type={field.type}
-                          class="calculator__formInput"
-                          placeholder={field.placeholder}
-                          required={field.required}
-                        />
+              <div
+                class={`calculator__grid calculator__grid--${step.gridColumns || 2}`}
+              >
+                {step.options.map((opt) => (
+                  <label class="calculator__card">
+                    <input
+                      type="radio"
+                      name={`step-${step.id}`}
+                      value={opt.id}
+                      class="calculator__radio"
+                    />
+                    <div class="calculator__card-inner">
+                      {opt.img && (
+                        <div class="calculator__card-image">
+                          <Image
+                            src={opt.img}
+                            alt={opt.label}
+                            loading="lazy"
+                            width={300}
+                            height={200}
+                          />
+                          {opt.color && (
+                            <div
+                              class="calculator__card-color"
+                              style={`background: ${opt.color}`}
+                            />
+                          )}
+                        </div>
                       )}
+                      <div class="calculator__card-content">
+                        <span class="calculator__card-label">{opt.label}</span>
+                        {opt.price && (
+                          <span class="calculator__card-price">
+                            {opt.price}
+                          </span>
+                        )}
+                      </div>
+                      <div class="calculator__card-check">
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                        >
+                          <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                      </div>
                     </div>
-                  ))}
-                </div>
-              ) : null}
+                  </label>
+                ))}
+              </div>
             </div>
           ))
         }
 
-        <!-- Кнопки -->
-        <div class="calculator__nav">
+        {/* Финальный шаг с контактами */}
+        <div
+          class="calculator__step calculator__step--final"
+          data-step={finalStep.id}
+          hidden
+        >
+          <div class="calculator__step-header">
+            <h3 class="calculator__step-title">{finalStep.title}</h3>
+            <p class="calculator__step-subtitle">{finalStep.subtitle}</p>
+          </div>
+
+          <div class="calculator__contacts">
+            {
+              finalStep.fields.map((field) => (
+                <div class="calculator__field">
+                  <label class="calculator__field-label" for={field.id}>
+                    {field.label}
+                    {field.required && (
+                      <span class="calculator__field-required">*</span>
+                    )}
+                  </label>
+                  {field.type === "textarea" ? (
+                    <textarea
+                      id={field.id}
+                      name={field.id}
+                      class="calculator__field-input calculator__field-input--textarea"
+                      placeholder={field.placeholder}
+                      required={field.required}
+                      rows="3"
+                    />
+                  ) : (
+                    <input
+                      id={field.id}
+                      name={field.id}
+                      type={field.type}
+                      class="calculator__field-input"
+                      placeholder={field.placeholder}
+                      required={field.required}
+                    />
+                  )}
+                </div>
+              ))
+            }
+
+            <div class="calculator__agree">
+              <label class="calculator__agree-label">
+                <input
+                  type="checkbox"
+                  required
+                  class="calculator__agree-checkbox"
+                />
+                <span>Я согласен на обработку персональных данных</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="calculator__actions">
           <button
             type="button"
             id="btnPrev"
-            class="calculator__btn calculator__btn--back"
+            class="calculator__btn calculator__btn--prev"
             disabled
           >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
             Назад
           </button>
+
           <button
             type="button"
             id="btnNext"
             class="calculator__btn calculator__btn--next"
           >
             Далее
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
           </button>
+
           <button
             type="submit"
             id="btnSubmit"
             class="calculator__btn calculator__btn--submit"
             hidden
           >
-            Отправить
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+            Отправить заявку
           </button>
         </div>
       </form>
 
-      <!-- Успех -->
+      <!-- Экран успеха -->
       <div id="successBlock" class="calculator__success" hidden>
-        <div class="calculator__successIcon">✓</div>
-        <h3 class="calculator__successTitle">Готово!</h3>
-        <p class="calculator__successDesc">
-          Заявка отправлена, мы свяжемся с вами в течение 15 минут
+        <div class="calculator__success-animation">
+          <div class="calculator__success-circle">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+        </div>
+        <h3 class="calculator__success-title">Заявка отправлена!</h3>
+        <p class="calculator__success-text">
+          Мы свяжемся с вами в течение <strong>15 минут</strong> для уточнения деталей
         </p>
+        <div class="calculator__success-details">
+          <div class="calculator__success-detail">
+            <span
+              >Или позвоните нам: <a href="tel:+79187683088"
+                >+7 (918) 768 30 88</a
+              ></span
+            >
+          </div>
+        </div>
+        <button
+          type="button"
+          id="btnReset"
+          class="calculator__btn calculator__btn--reset"
+        >
+          Рассчитать заново
+        </button>
       </div>
     </div>
   </div>
@@ -253,409 +413,596 @@ const steps = [
 
 <style lang="scss">
   .calculator {
-    padding: 20px 0;
-    font-family: var(--font-main);
-
+    padding: 80px 0;
     position: relative;
-    background: linear-gradient(160deg, #f8f9fb 0%, #eef2f7 100%);
-    overflow: hidden; // Чтобы декоративные элементы не вылезали за секцию
+    overflow: hidden;
+    background: linear-gradient(135deg, #f8f9fb 0%, #e8ecf1 100%);
 
-    &::before,
-    &::after {
-      content: "";
+    &__bg {
       position: absolute;
-      border-radius: 50%;
-      filter: blur(80px);
-      opacity: 0.5;
+      inset: 0;
       pointer-events: none;
     }
-    &::before {
-      width: 450px;
-      height: 450px;
-      top: -120px;
-      left: -100px;
-      background: radial-gradient(
-        circle,
-        rgba(245, 73, 0, 0.18),
-        transparent 70%
-      );
-    }
-    &::after {
-      width: 500px;
-      height: 500px;
-      bottom: -150px;
-      right: -120px;
-      background: radial-gradient(
-        circle,
-        rgba(54, 65, 83, 0.12),
-        transparent 70%
-      );
+
+    &__bg-shape {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.3;
+
+      &--1 {
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(
+          circle,
+          rgba(245, 73, 0, 0.2),
+          transparent 70%
+        );
+        top: -200px;
+        right: -150px;
+      }
+
+      &--2 {
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(
+          circle,
+          rgba(54, 65, 83, 0.15),
+          transparent 70%
+        );
+        bottom: -200px;
+        left: -100px;
+      }
     }
 
-    &__top {
-      display: flex;
-      flex-direction: column;
-      row-gap: 18px;
+    &__header {
       text-align: center;
-      text-align: center;
+      margin-bottom: 48px;
+      position: relative;
+      z-index: 1;
     }
 
-    &__subtitle {
-      font-size: 22px;
+    &__badge {
+      display: inline-block;
+      padding: 8px 20px;
+      background: linear-gradient(135deg, var(--color-primary), #ff6b3d);
+      color: white;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      letter-spacing: 0.5px;
+    }
+
+    &__title {
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 800;
       color: var(--color-secondary);
-    }
-
-    &__container {
-      max-width: 850px;
-      margin: 0 auto;
-      margin-top: 24px;
-      background: var(--color-white);
-      border-radius: 16px;
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      max-height: 95vh;
-    }
-
-    &__progress {
-      padding: 12px 20px;
-      flex-shrink: 0;
-    }
-
-    &__progressInfo {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 8px;
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--color-secondary);
-    }
-
-    &__progressTrack {
-      width: 100%;
-      height: 4px;
-      background: rgb(202, 202, 202);
-      border-radius: 2px;
-      overflow: hidden;
-    }
-
-    &__progressFill {
-      height: 100%;
-      width: 0;
-      background: linear-gradient(
-        90deg,
-        var(--color-primary),
-        var(--color-primary-hover)
-      );
-      border-radius: 2px;
-      transition: width 0.25s ease-out;
-      will-change: width;
-    }
-
-    &__form {
-      padding: 16px 20px 20px;
-      flex: 1;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-    }
-
-    &__step[hidden] {
-      display: none;
-    }
-
-    &__titleStep {
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--color-secondary);
-      margin: 0 0 4px;
+      margin: 0 0 16px;
       line-height: 1.2;
     }
 
-    &__desc {
-      font-size: 13px;
+    &__subtitle {
+      font-size: 18px;
       color: var(--color-gray-700);
-      margin: 0 0 16px;
-      line-height: 1.3;
+      margin: 0;
+      max-width: 500px;
+      margin-inline: auto;
     }
 
- &__options {
-  margin-top: 14px;
-  display: grid;
-  gap: 10px;
-  margin-bottom: 16px;
-  
-  // По умолчанию — 2 колонки
-  grid-template-columns: repeat(2, 1fr);
-  
-  // Модификаторы для количества колонок
-  &--cols-2 {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  &--cols-3 {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-// Адаптив: на мобильных всегда 1 колонка
-@media (max-width: 576px) {
-  &__options {
-    grid-template-columns: 1fr !important;
-    gap: 8px;
-  }
-}
-
-    &__optionInput {
-      position: absolute;
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    &__optionCard {
-      display: flex;
-      flex-direction: column;
-      padding: 8px;
-      border: 2px solid rgb(226, 226, 226);
-      border-radius: 12px;
-      background: var(--color-white);
-      cursor: pointer;
-      transition: all 0.15s ease;
-      height: 100%;
-      box-sizing: border-box;
-      text-align: center;
-      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
-    }
-
-    &__optionInput:checked + &__optionCard {
-      border-color: var(--color-primary);
-      background: rgba(245, 73, 0, 0.04);
-    }
-
-    &__optionImage {
-      width: 100%;
-      height: 200px;
-      flex-shrink: 0;
-      border-radius: 8px;
-      background: var(--color-bg-3);
-      margin-bottom: 8px;
-      overflow: hidden; /* ⭐ Обрезаем всё, что вылезает */
-      display: flex; /* ⭐ Центрируем картинку */
-      align-items: center;
-      justify-content: center;
-
-       &--text-only {
-    justify-content: center;
-    padding: 16px 12px;
-    min-height: 80px;
-    
-    .calculator__optionContent {
-      text-align: center;
-    }
-    
-    .calculator__optionLabel {
-      font-size: 14px;
-      white-space: normal;
-      line-height: 1.3;
-    }
-  }
-
-      /* ⭐ Стили для Astro Image */
-      :global(img) {
-        width: 100% !important;
-        height: 100% !important;
-        object-fit: cover !important;
-        display: block;
-        border-radius: 8px;
-      }
-    }
-
-    &__optionContent {
-      display: flex;
-      flex-direction: column;
-      text-align: left;
-      min-width: 0;
-    }
-
-    &__optionLabel {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--color-secondary);
-      margin: 0 0 2px;
-      white-space: nowrap;
+    &__wrapper {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 24px;
+      box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.08),
+        0 0 0 1px rgba(0, 0, 0, 0.05);
       overflow: hidden;
-      text-overflow: ellipsis;
-      width: 100%;
+      position: relative;
+      z-index: 1;
     }
 
-    &__formFields {
+    &__progress {
+      padding: 32px 40px 0;
+      background: white;
+      position: relative;
+    }
+
+    &__progress-steps {
       display: flex;
-      flex-direction: column;
-      gap: 10px;
+      justify-content: space-between;
       margin-bottom: 16px;
     }
 
-    &__formField {
+    &__progress-step {
       display: flex;
-      flex-direction: column;
-      gap: 4px;
+      align-items: center;
+      gap: 8px;
+      opacity: 0.4;
+      transition: all 0.3s ease;
+
+      &.active {
+        opacity: 1;
+
+        .calculator__progress-number {
+          background: var(--color-primary);
+          color: white;
+          box-shadow: 0 4px 12px rgba(245, 73, 0, 0.3);
+        }
+      }
+
+      &.completed {
+        opacity: 0.7;
+
+        .calculator__progress-number {
+          background: #4caf50;
+          color: white;
+        }
+      }
     }
 
-    // Если есть изображение — высота фиксированная
-&__optionImage {
-  width: 100%;
-  height: 140px; // ← уменьшил для компактности
-  flex-shrink: 0;
-  border-radius: 8px;
-  background: var(--color-bg-3);
-  margin-bottom: 8px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  :global(img) {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-    display: block;
-    border-radius: 8px;
-  }
-}
-
-// Адаптив: на мобильных карточки с картинками — горизонтальные
-@media (max-width: 576px) {
-  &__optionCard:not(&__optionCard--text-only) {
-    flex-direction: row;
-    align-items: center;
-    text-align: left;
-    
-    .calculator__optionImage {
-      width: 60px;
-      height: 60px;
-      margin-bottom: 0;
-      margin-right: 12px;
-    }
-    
-    .calculator__optionContent {
-      text-align: left;
-      flex: 1;
-    }
-  }
-  
-  // Текст-карточки остаются как есть, но с отступами
-  &__optionCard--text-only {
-    padding: 12px;
-  }
-}
-
-    &__formLabel {
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--color-secondary);
-    }
-
-    &__formInput {
-      padding: 10px 12px;
-      font-size: 14px;
-      border: 2px solid var(--color-bg-2);
-      border-radius: 8px;
-      background: var(--color-white);
-      color: var(--color-secondary);
-      transition: border-color 0.15s;
-    }
-
-    &__formInput:focus {
-      outline: none;
-      border-color: var(--color-primary);
-    }
-
-    &__nav {
+    &__progress-number {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #e0e0e0;
       display: flex;
-      justify-content: space-between;
-      padding-top: 12px;
-      border-top: 1px solid var(--color-bg-2);
-      margin-top: auto;
-      flex-shrink: 0;
-    }
-
-    &__btn {
-      padding: 10px 20px;
-      font-size: 14px;
-      font-weight: 600;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-
-    &__btn--back {
-      background: transparent;
-      color: var(--color-secondary);
-      &:hover:not(:disabled) {
-        background: var(--color-btn-outline-hover);
-      }
-      &:disabled {
-        opacity: 0.4;
-        cursor: not-allowed;
-      }
-    }
-
-    &__btn--next,
-    &__btn--submit {
-      background: var(--color-primary);
-      color: var(--color-white);
-      &:hover {
-        background: var(--color-primary-hover);
-      }
-    }
-
-    &__btn--submit {
-      background: var(--color-secondary);
-      &:hover {
-        background: var(--color-secondary-hover);
-      }
-    }
-
-    &__success {
-      padding: 32px 20px;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      flex: 1;
+      font-size: 14px;
+      font-weight: 700;
+      color: #666;
+      transition: all 0.3s ease;
+    }
+
+    &__progress-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #666;
+      display: none;
+
+      @media (min-width: 768px) {
+        display: block;
+      }
+    }
+
+    &__progress-bar {
+      width: 100%;
+      height: 4px;
+      background: #e0e0e0;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    &__progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--color-primary), #ff6b3d);
+      border-radius: 2px;
+      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      width: 0%;
+    }
+
+    &__form {
+      padding: 32px 40px 24px;
+    }
+
+    &__step {
+      animation: fadeSlideIn 0.4s ease;
+
       &[hidden] {
         display: none;
       }
     }
 
-    &__successIcon {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: var(--color-primary);
-      color: var(--color-white);
+    &__step-header {
+      margin-bottom: 32px;
+      text-align: center;
+    }
+
+    &__step-title {
       font-size: 24px;
       font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 12px;
-    }
-
-    &__successTitle {
-      font-size: 18px;
-      font-weight: 700;
       color: var(--color-secondary);
-      margin: 0 0 6px;
+      margin: 0 0 8px;
     }
 
-    &__successDesc {
+    &__step-subtitle {
       font-size: 14px;
       color: var(--color-gray-700);
       margin: 0;
-      max-width: 280px;
+    }
+
+    &__grid {
+      display: grid;
+      gap: 16px;
+
+      &--2 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      &--3 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      @media (max-width: 576px) {
+        grid-template-columns: 1fr !important;
+      }
+    }
+
+    &__card {
+      cursor: pointer;
+      position: relative;
+    }
+
+    &__radio {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+
+      &:checked + .calculator__card-inner {
+        border-color: var(--color-primary);
+        background: rgba(245, 73, 0, 0.03);
+        box-shadow:
+          0 8px 24px rgba(245, 73, 0, 0.12),
+          0 0 0 1px var(--color-primary);
+
+        .calculator__card-check {
+          opacity: 1;
+          transform: scale(1);
+        }
+
+        .calculator__card-label {
+          color: var(--color-primary);
+        }
+      }
+
+      &:focus-visible + .calculator__card-inner {
+        outline: 2px solid var(--color-primary);
+        outline-offset: 2px;
+      }
+    }
+
+    &__card-inner {
+      position: relative;
+      padding: 16px;
+      border: 2px solid #e8e8e8;
+      border-radius: 16px;
+      background: white;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+      &:hover {
+        border-color: #ccc;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      }
+    }
+
+    &__card-image {
+      width: 100%;
+      height: 160px;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 12px;
+      position: relative;
+      background: #f5f5f5;
+
+      :global(img) {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      @media (max-width: 576px) {
+        height: 120px;
+        margin-bottom: 0;
+        margin-right: 12px;
+        flex-shrink: 0;
+      }
+    }
+
+    &__card-color {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid white;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    &__card-content {
+      margin-top: 10px;
+      text-align: center;
+
+      @media (max-width: 576px) {
+        text-align: left;
+      }
+    }
+
+    &__card-label {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--color-secondary);
+      transition: color 0.2s ease;
+    }
+
+    &__card-check {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--color-primary);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: scale(0.5);
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    &__card-inner:has(+ .calculator__card-content:only-child) {
+      padding: 24px 16px;
+      text-align: center;
+
+      .calculator__card-label {
+        font-size: 15px;
+      }
+    }
+
+    &__contacts {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    &__field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    &__field-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--color-secondary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    &__field-required {
+      color: var(--color-primary);
+      font-size: 18px;
+    }
+
+    &__field-input {
+      padding: 14px 16px;
+      border: 2px solid #e0e0e0;
+      border-radius: 12px;
+      font-size: 15px;
+      font-family: inherit;
+      color: var(--color-secondary);
+      background: #fafafa;
+      transition: all 0.2s ease;
+
+      &:focus {
+        outline: none;
+        border-color: var(--color-primary);
+        background: white;
+        box-shadow: 0 0 0 3px rgba(245, 73, 0, 0.1);
+      }
+
+      &::placeholder {
+        color: #bbb;
+      }
+
+      &--textarea {
+        resize: vertical;
+        min-height: 80px;
+      }
+    }
+
+    &__agree {
+      margin-top: 8px;
+    }
+
+    &__agree-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--color-gray-700);
+      cursor: pointer;
+    }
+
+    &__agree-checkbox {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--color-primary);
+    }
+
+    &__actions {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid #f0f0f0;
+    }
+
+    &__btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      font-size: 15px;
+      font-weight: 600;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      &--prev {
+        background: #f5f5f5;
+        color: #666;
+
+        &:hover:not(:disabled) {
+          background: #e8e8e8;
+        }
+
+        &:disabled {
+          opacity: 0.3;
+          cursor: not-allowed;
+        }
+      }
+
+      &--next {
+        background: var(--color-primary);
+        color: white;
+        margin-left: auto;
+        display: inline-flex;
+
+        &:hover {
+          background: var(--color-primary-hover);
+          transform: translateX(2px);
+        }
+      }
+
+      &--submit {
+        background: linear-gradient(135deg, #4caf50, #45a049);
+        color: white;
+        width: 100%;
+        justify-content: center;
+        margin-left: auto;
+        display: none;
+      }
+
+      &--reset {
+        background: var(--color-primary);
+        color: white;
+        margin-top: 24px;
+
+        &:hover {
+          background: var(--color-primary-hover);
+        }
+      }
+    }
+
+    &__success {
+      padding: 60px 40px;
+      text-align: center;
+
+      &[hidden] {
+        display: none;
+      }
+    }
+
+    &__success-animation {
+      margin-bottom: 32px;
+    }
+
+    &__success-circle {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #4caf50, #45a049);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: successPulse 2s ease infinite;
+
+      svg {
+        width: 40px;
+        height: 40px;
+        color: white;
+        animation: successCheck 0.5s ease 0.2s both;
+      }
+    }
+
+    &__success-title {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--color-secondary);
+      margin: 0 0 12px;
+    }
+
+    &__success-text {
+      font-size: 16px;
+      color: var(--color-gray-700);
+      margin: 0 0 32px;
+      line-height: 1.6;
+
+      strong {
+        color: var(--color-primary);
+      }
+    }
+
+    &__success-details {
+      margin-bottom: 32px;
+    }
+
+    &__success-detail {
+      font-size: 14px;
+      color: var(--color-gray-700);
+
+      a {
+        color: var(--color-primary);
+        font-weight: 600;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  @keyframes fadeSlideIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes successPulse {
+    0%,
+    100% {
+      box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.4);
+    }
+    50% {
+      box-shadow: 0 0 0 20px rgba(76, 175, 80, 0);
+    }
+  }
+
+  @keyframes successCheck {
+    from {
+      opacity: 0;
+      transform: scale(0.5) rotate(-45deg);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) rotate(0);
     }
   }
 
@@ -665,62 +1012,110 @@ const steps = [
       transform: translateX(0);
     }
     25% {
-      transform: translateX(-4px);
+      transform: translateX(-6px);
     }
     75% {
-      transform: translateX(4px);
+      transform: translateX(6px);
     }
   }
 
   .shake {
-    animation: shake 0.2s ease;
+    animation: shake 0.3s ease;
   }
 
-  @media (max-width: 576px) {
+  @media (max-width: 768px) {
     .calculator {
-      &__container {
-        border-radius: 12px;
-        margin: 0 8px;
-        margin-top: 20px;
+      padding: 40px 0;
+
+      &__wrapper {
+        border-radius: 16px;
+        margin: 0 12px;
       }
+
       &__progress {
-        padding: 10px 16px;
+        padding: 24px 20px 0;
       }
+
       &__form {
-        padding: 12px 16px 16px;
-      }
-      &__options {
-        grid-template-columns: 1fr;
-        gap: 8px;
+        padding: 24px 20px;
       }
 
-      &__optionCard {
-        flex-direction: row;
-        align-items: center;
-        padding: 8px;
-        text-align: left;
+      &__step-title {
+        font-size: 20px;
       }
 
-      &__optionContent {
-        align-items: flex-start;
+      &__actions {
+        flex-wrap: wrap;
       }
 
-      &__title {
-        font-size: 17px;
-      }
-      &__desc {
-        font-size: 13px;
-        margin-bottom: 12px;
-      }
-      &__nav {
-        flex-direction: column-reverse;
-        gap: 8px;
-        padding-top: 10px;
-      }
       &__btn {
-        width: 100%;
-        padding: 12px;
+        padding: 12px 20px;
+        font-size: 14px;
+
+        &--prev {
+          order: 2;
+          width: 100%;
+          justify-content: center;
+        }
+
+        &--next {
+          order: 1;
+          width: 100%;
+          justify-content: center;
+        }
       }
+
+      &__success {
+        padding: 40px 20px;
+      }
+    }
+  }
+
+  .calculator__spinner {
+    animation: spin 1s linear infinite;
+    width: 20px;
+    height: 20px;
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .calculator__btn--submit {
+    display: none !important;
+
+    &[style*="display: inline-flex"] {
+      display: inline-flex !important;
+    }
+  }
+
+  .calculator__btn--disabled {
+    opacity: 0.5 !important;
+    cursor: not-allowed !important;
+    transform: none !important;
+    box-shadow: none !important;
+    pointer-events: none !important;
+  }
+
+  .calculator__btn--loading {
+    opacity: 0.7 !important;
+    pointer-events: none !important;
+  }
+
+  .calculator__btn--submit:not(.calculator__btn--disabled):not(
+      .calculator__btn--loading
+    ) {
+    opacity: 1;
+    cursor: pointer;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(76, 175, 80, 0.3);
     }
   }
 </style>
@@ -730,57 +1125,103 @@ const steps = [
     const steps = document.querySelectorAll(".calculator__step");
     const totalSteps = steps.length;
 
-    // Прогресс-бар — опционально, с проверкой на существование
-    const progressFill = document.getElementById("progressFill");
-    const stepCurrent = document.getElementById("stepCurrent");
-    const stepPercent = document.getElementById("stepPercent");
+    const progressBar = document.getElementById("progressBar");
+    const progressSteps = document.querySelectorAll(
+      ".calculator__progress-step",
+    );
 
     const btnPrev = document.getElementById("btnPrev");
     const btnNext = document.getElementById("btnNext");
     const btnSubmit = document.getElementById("btnSubmit");
+    const btnReset = document.getElementById("btnReset");
     const form = document.getElementById("calcForm");
     const successBlock = document.getElementById("successBlock");
 
     let currentStep = 1;
+    let selectedData = {};
 
-    function updateProgress() {
-      // Обновляем прогресс только если элементы есть в DOM
-      if (progressFill && stepCurrent && stepPercent) {
-        const percent = Math.round((currentStep / totalSteps) * 100);
-        progressFill.style.width = `${percent}%`;
-        stepCurrent.textContent = currentStep;
-        stepPercent.textContent = `${percent}%`;
+    function updateUI() {
+      const progress = ((currentStep - 1) / (totalSteps - 1)) * 100;
+      if (progressBar) {
+        progressBar.style.width = `${progress}%`;
       }
 
-      // Кнопка "Назад"
+      progressSteps.forEach((step, index) => {
+        step.classList.remove("active", "completed");
+        if (index + 1 === currentStep) {
+          step.classList.add("active");
+        } else if (index + 1 < currentStep) {
+          step.classList.add("completed");
+        }
+      });
+
       if (btnPrev) {
         btnPrev.disabled = currentStep === 1;
       }
 
-      // Переключение кнопок Далее/Отправить
       if (btnNext && btnSubmit) {
         if (currentStep === totalSteps) {
-          btnNext.hidden = true;
-          btnSubmit.hidden = false;
+          btnNext.style.display = "none";
+          btnSubmit.style.display = "inline-flex";
+
+          updateSubmitButton();
         } else {
-          btnNext.hidden = false;
-          btnSubmit.hidden = true;
+          btnNext.style.display = "inline-flex";
+          btnSubmit.style.display = "none";
         }
       }
     }
 
-    function showStep(stepNum) {
-      steps.forEach((step, index) => {
-        step.hidden = index !== stepNum - 1;
-      });
-      currentStep = stepNum;
-      updateProgress();
-      
-      // Скролл к началу формы при смене шага (удобно на мобильных)
-      const formContainer = document.querySelector(".calculator__form");
-      if (formContainer) {
-        formContainer.scrollTo({ top: 0, behavior: "smooth" });
+    function updateSubmitButton() {
+      if (!btnSubmit || btnSubmit.style.display === "none") return;
+
+      const nameInput = document.getElementById("name");
+      const phoneInput = document.getElementById("phone");
+      const agreeCheckbox = document.querySelector(
+        ".calculator__agree-checkbox",
+      );
+
+      if (nameInput && phoneInput && agreeCheckbox) {
+        const isValid =
+          nameInput.value.trim() !== "" &&
+          phoneInput.value.trim() !== "" &&
+          agreeCheckbox.checked;
+
+        btnSubmit.disabled = !isValid;
+        btnSubmit.classList.toggle("calculator__btn--disabled", !isValid);
       }
+    }
+
+    function showStep(stepNum) {
+      steps.forEach((step) => {
+        step.hidden = step.dataset.step != stepNum;
+      });
+
+      currentStep = stepNum;
+      updateUI();
+
+      if (stepNum === totalSteps) {
+        setupContactValidation();
+      }
+    }
+
+    function setupContactValidation() {
+      const nameInput = document.getElementById("name");
+      const phoneInput = document.getElementById("phone");
+      const agreeCheckbox = document.querySelector(
+        ".calculator__agree-checkbox",
+      );
+
+      [nameInput, phoneInput, agreeCheckbox].forEach((element) => {
+        if (element) {
+          element.removeEventListener("input", updateSubmitButton);
+          element.removeEventListener("change", updateSubmitButton);
+          element.addEventListener("input", updateSubmitButton);
+          element.addEventListener("change", updateSubmitButton);
+        }
+      });
+
+      updateSubmitButton();
     }
 
     function validateCurrentStep() {
@@ -789,29 +1230,41 @@ const steps = [
       );
       if (!activeStep) return false;
 
-      // Валидация радио-кнопок
       const radios = activeStep.querySelectorAll('input[type="radio"]');
       if (radios.length > 0) {
         const checked = activeStep.querySelector('input[type="radio"]:checked');
         if (!checked) {
-          // Анимация "тряски" для карточек
-          activeStep
-            .querySelectorAll(".calculator__optionCard")
-            .forEach((card) => {
-              card.classList.remove("shake");
-              void card.offsetWidth; // reflow для перезапуска анимации
-              card.classList.add("shake");
-            });
+          const cards = activeStep.querySelectorAll(".calculator__card-inner");
+          cards.forEach((card) => {
+            card.classList.add("shake");
+            setTimeout(() => card.classList.remove("shake"), 300);
+          });
+
+          const firstCard = activeStep.querySelector(".calculator__card");
+          if (firstCard) {
+            firstCard.scrollIntoView({ behavior: "smooth", block: "center" });
+          }
+
           return false;
         }
       }
 
-      // Валидация обязательных полей
       const required = activeStep.querySelectorAll("[required]");
       for (const field of required) {
-        if (!field.value.trim()) {
+        if (field.type === "checkbox") {
+          if (!field.checked) {
+            field.parentElement?.classList.add("shake");
+            setTimeout(
+              () => field.parentElement?.classList.remove("shake"),
+              300,
+            );
+            return false;
+          }
+        } else if (!field.value.trim()) {
           field.style.borderColor = "var(--color-primary)";
-          setTimeout(() => (field.style.borderColor = ""), 1500);
+          setTimeout(() => {
+            field.style.borderColor = "";
+          }, 2000);
           return false;
         }
       }
@@ -819,51 +1272,111 @@ const steps = [
       return true;
     }
 
-    // Кнопка "Далее"
+    function collectFormData() {
+      const data = { ...selectedData };
+
+      const nameInput = document.getElementById("name");
+      const phoneInput = document.getElementById("phone");
+      const commentInput = document.getElementById("comment");
+
+      if (nameInput) data.name = nameInput.value;
+      if (phoneInput) data.phone = phoneInput.value;
+      if (commentInput) data.comment = commentInput.value;
+
+      return data;
+    }
+
     btnNext?.addEventListener("click", () => {
       if (validateCurrentStep() && currentStep < totalSteps) {
+        const activeStep = document.querySelector(
+          ".calculator__step:not([hidden])",
+        );
+        const checkedRadio = activeStep?.querySelector(
+          'input[type="radio"]:checked',
+        );
+        if (checkedRadio) {
+          const stepId = activeStep.dataset.step;
+          selectedData[`step_${stepId}`] = checkedRadio.value;
+        }
+
         showStep(currentStep + 1);
       }
     });
 
-    // Кнопка "Назад" — теперь работает ✅
     btnPrev?.addEventListener("click", () => {
       if (currentStep > 1) {
         showStep(currentStep - 1);
       }
     });
 
-    // Отправка формы
-    form?.addEventListener("submit", (e) => {
+    form?.addEventListener("submit", async (e) => {
       e.preventDefault();
 
-      const data = {};
-      
-      // Собираем текстовые поля
-      form.querySelectorAll("input, textarea").forEach((el) => {
-        if (el.name && el.value) data[el.name] = el.value;
-      });
-      
-      // Собираем выбранные радио-кнопки
-      form.querySelectorAll('input[type="radio"]:checked').forEach((el) => {
-        data[`step_${el.name.split('-')[1]}`] = el.value;
-      });
+      if (!validateCurrentStep()) return;
+      if (currentStep === totalSteps && btnSubmit.disabled) {
+        return;
+      }
 
-      console.log("Заявка:", data);
+      const formData = collectFormData();
+      console.log("📤 Отправка заявки:", formData);
 
-      // Показываем блок успеха
-      if (form && successBlock) {
+      btnSubmit.disabled = true;
+      btnSubmit.classList.add("calculator__btn--loading");
+      const originalHTML = btnSubmit.innerHTML;
+
+      console.log(formData);
+
+      // Здесь реальная отправка
+      // await fetch('/api/submit', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify(formData)
+      // });
+
+      setTimeout(() => {
         form.hidden = true;
         successBlock.hidden = false;
-      }
-      
-      // Здесь можно добавить реальную отправку на сервер:
-      // await fetch('/api/submit', { method: 'POST', body: JSON.stringify(data) })
+        btnSubmit.innerHTML = originalHTML;
+        btnSubmit.disabled = false;
+        btnSubmit.classList.remove("calculator__btn--loading");
+      }, 1500);
     });
 
-    // Инициализация
-    requestAnimationFrame(() => {
-      updateProgress();
+    btnReset?.addEventListener("click", () => {
+      form.reset();
+      form.hidden = false;
+      successBlock.hidden = true;
+      selectedData = {};
+      currentStep = 1;
+
+      if (btnSubmit) {
+        btnSubmit.classList.remove(
+          "calculator__btn--disabled",
+          "calculator__btn--loading",
+        );
+      }
+
+      showStep(1);
     });
+
+    const phoneInput = document.getElementById("phone");
+    phoneInput?.addEventListener("input", (e) => {
+      let value = e.target.value.replace(/\D/g, "");
+      if (value.startsWith("7") || value.startsWith("8")) {
+        value = value.substring(1);
+      }
+
+      let formatted = "+7 (";
+      if (value.length > 0) formatted += value.substring(0, 3);
+      if (value.length >= 3) formatted += ") " + value.substring(3, 6);
+      if (value.length >= 6) formatted += "-" + value.substring(6, 8);
+      if (value.length >= 8) formatted += "-" + value.substring(8, 10);
+
+      e.target.value = formatted;
+
+      updateSubmitButton();
+    });
+
+    showStep(1);
   });
 </script>

@@ -76,14 +76,21 @@ import SuccessIcon from "../components/icons/Success.astro";
         </div>
       </div>
     </div>
+    <div class="main__ticker ticker" data-ticker="tarrifs">
+      <div class="ticker__wrapper">
+        <div class="ticker__item">Ворота</div>
+        <div class="ticker__item">Заборы</div>
+        <div class="ticker__item">Перила</div>
+      </div>
+    </div>
   </div>
 </section>
 
 <style lang="scss">
   .main {
     position: relative;
-    // background: var(--color-bg-1);
     padding: 4rem 0;
+    overflow: hidden;
 
     &--decorate {
       position: absolute;
@@ -99,10 +106,10 @@ import SuccessIcon from "../components/icons/Success.astro";
 
     &--decorate2 {
       position: absolute;
-      bottom: 5%;
+      bottom: 30%;
       right: 5%;
-      width: 460px;
-      height: 460px;
+      width: 200px;
+      height: 200px;
       background-color: rgba(255, 175, 100, 0.25);
       filter: blur(110px);
       pointer-events: none;
@@ -374,6 +381,50 @@ import SuccessIcon from "../components/icons/Success.astro";
         flex-direction: column;
         gap: 30px;
       }
+    }
+  }
+
+  .main__ticker {
+    position: absolute;
+    z-index: -6;
+    bottom: -10%;
+    left: -100%;
+    font-size: 200px;
+    color: rgba(255, 241, 227, 0.48);
+  }
+
+  .ticker {
+    overflow: hidden;
+  }
+
+  .ticker__wrapper {
+    display: flex;
+  }
+
+  .ticker__item {
+    flex-shrink: 0;
+
+    padding: 0 50px;
+
+    font-weight: 700;
+    line-height: 117.6%;
+    text-transform: uppercase;
+    white-space: nowrap;
+
+    animation: ticker 10s linear infinite;
+
+    @media screen and (min-width: 586px) {
+      padding: 0 126px;
+    }
+  }
+
+  @keyframes ticker {
+    0% {
+      transform: translateZ(0);
+    }
+
+    100% {
+      transform: translate3d(-100%, 0, 0);
     }
   }
 </style>

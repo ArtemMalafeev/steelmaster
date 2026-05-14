@@ -1,5 +1,4 @@
 ---
-import CallModal from "../components/CallModal.astro";
 import "../styles/index.scss";
 ---
 
@@ -9,40 +8,252 @@ import "../styles/index.scss";
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
 
     <title>СТАЛЬМАСТЕР | Забор всем</title>
-    <meta name="description" content="Производство и монтаж всех видов ворот и заборов под ключ. Работаем на любом типе грунта. От бюджетного до премиум сегмента" />
-    
+    <meta
+      name="description"
+      content="Производство и монтаж всех видов ворот и заборов под ключ. Работаем на любом типе грунта. От бюджетного до премиум сегмента"
+    />
+
     <!-- TODO: DELETE -->
-    <meta name="robots" content="noindex, nofollow" /> 
+    <meta name="robots" content="noindex, nofollow" />
 
     <script type="text/javascript" is:inline>
-          (function(m,e,t,r,i,k,a){
-              m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-              m[i].l=1*new Date();
-              for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-              k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-          })(window, document,'script','https://mc.yandex.ru/metrika/tag.js', 'ym');
+      (function (m, e, t, r, i, k, a) {
+        m[i] =
+          m[i] ||
+          function () {
+            (m[i].a = m[i].a || []).push(arguments);
+          };
+        m[i].l = 1 * new Date();
+        for (var j = 0; j < document.scripts.length; j++) {
+          if (document.scripts[j].src === r) {
+            return;
+          }
+        }
+        ((k = e.createElement(t)),
+          (a = e.getElementsByTagName(t)[0]),
+          (k.async = 1),
+          (k.src = r),
+          a.parentNode.insertBefore(k, a));
+      })(
+        window,
+        document,
+        "script",
+        "https://mc.yandex.ru/metrika/tag.js",
+        "ym",
+      );
 
-          ym(109062035, 'init', {
-              clickmap:true,
-              trackLinks:true,
-              accurateTrackBounce:true,
-              webvisor:true,
-              ecommerce:"dataLayer"
-          });
-      </script>
-      <noscript><div><img src="https://mc.yandex.ru/watch/109062035" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+      ym(109062035, "init", {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        webvisor: true,
+        ecommerce: "dataLayer",
+      });
+    </script>
+    <noscript
+      ><div>
+        <img
+          src="https://mc.yandex.ru/watch/109062035"
+          style="position:absolute; left:-9999px;"
+          alt=""
+        />
+      </div></noscript
+    >
   </head>
   <body>
     <slot />
-      <CallModal />
+
+    <div class="privacy-agreement" id="privacyAgreement">
+      <div class="privacy-agreement__content">
+        <span class="privacy-agreement__text">
+          Нажимая на кнопки сайта, вы даёте
+          <a href="/privacy-policy" class="privacy-agreement__link"
+            >согласие на обработку персональных данных</a
+          >
+        </span>
+        <button
+          class="privacy-agreement__close"
+          type="button"
+          aria-label="Закрыть уведомление"
+          id="privacyCloseBtn"
+        >
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M18 6L6 18M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
   </body>
 </html>
+
+<style lang="scss">
+  .privacy-agreement {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 999;
+    padding: 12px 20px;
+    background: var(--color-white);
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.06);
+    font-size: 13px;
+    color: var(--color-secondary);
+    line-height: 1.4;
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
+
+    &.hidden {
+      transform: translateY(100%);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    @media (min-width: 768px) {
+      position: fixed;
+      bottom: 16px;
+      right: 24px;
+      left: auto;
+      width: auto;
+      max-width: 380px;
+      padding: 12px 18px 12px 20px;
+      border-radius: 12px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    &__content {
+      margin: 0 auto;
+      max-width: 1200px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+
+      @media (min-width: 768px) {
+        justify-content: flex-start;
+      }
+    }
+
+    &__text {
+      display: block;
+      text-align: center;
+      flex: 1;
+
+      @media (min-width: 768px) {
+        text-align: left;
+        padding-right: 8px;
+      }
+    }
+
+    &__link {
+      color: var(--color-primary);
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px dashed transparent;
+      transition: all 0.2s ease;
+
+      &:hover {
+        color: var(--color-primary-hover);
+        border-bottom-color: var(--color-primary);
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--color-primary);
+        outline-offset: 2px;
+        border-radius: 4px;
+      }
+    }
+
+    &__close {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      border: none;
+      border-radius: 8px;
+      background: transparent;
+      color: var(--color-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      padding: 0;
+
+      &:hover {
+        background: var(--color-btn-outline-hover);
+        color: var(--color-primary);
+        transform: rotate(90deg);
+      }
+
+      &:active {
+        transform: scale(0.95);
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--color-primary);
+        outline-offset: 2px;
+      }
+
+      svg {
+        display: block;
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    body {
+      padding-bottom: 60px;
+    }
+
+    .privacy-agreement {
+      max-width: 280px;
+      margin-left: auto;
+      margin-right: 20px;
+      margin-bottom: 10px;
+    }
+  }
+</style>
+
+<script>
+  (function () {
+    const STORAGE_KEY = "privacy_agreement_dismissed";
+    const agreement = document.getElementById("privacyAgreement");
+    const closeBtn = document.getElementById("privacyCloseBtn");
+
+    if (localStorage.getItem(STORAGE_KEY) === "true" && agreement) {
+      agreement.classList.add("hidden");
+      if (window.innerWidth < 768) {
+        document.body.style.paddingBottom = "0";
+      }
+    }
+
+    if (closeBtn && agreement) {
+      closeBtn.addEventListener("click", () => {
+        agreement.classList.add("hidden");
+        localStorage.setItem(STORAGE_KEY, "true");
+
+        if (window.innerWidth < 768) {
+          document.body.style.paddingBottom = "0";
+        }
+      });
+    }
+  })();
+</script>

@@ -1,83 +1,122 @@
 ---
-import MenuIcon from '../components/icons/socials/Menu.astro'
+import MenuIcon from "../components/icons/socials/Menu.astro";
 
 import PhoneIcon from "../components/icons/Phone.astro";
-import MapIcon from "../components/icons/Map.astro";
-import WatchIcon from "../components/icons/Watch.astro";
 import EmailIcon from "../components/icons/Email.astro";
 import MaxIcon from "../components/icons/socials/Max.astro";
 import TelegramIcon from "../components/icons/socials/Telegram.astro";
 import WhatsAppIcon from "../components/icons/socials/WhatsApp.astro";
-import WhatsApp from '../components/icons/socials/WhatsApp.astro';
 ---
+
 <div class="floating-contact" id="floatingContact">
-  <button 
-    class="floating-contact__btn" 
+  <button
+    class="floating-contact__btn"
     id="floatingContactBtn"
     aria-label="Связаться с нами"
     aria-expanded="false"
     aria-controls="floatingContactMenu"
   >
     <div class="floating-contact__icon">
-        <MenuIcon  />
+      <MenuIcon />
     </div>
   </button>
 
-  <ul class="floating-contact__menu" id="floatingContactMenu" aria-hidden="true">
+  <ul
+    class="floating-contact__menu"
+    id="floatingContactMenu"
+    aria-hidden="true"
+  >
     <li>
-        <a href="tel:+79991234567" class="floating-contact__link">
-            <div class="floating-contact__socialIcon">
-                <PhoneIcon />
-            </div>
-            <span>Позвонить</span>
-        </a>
+      <a href="tel:+79991234567" class="floating-contact__link">
+        <div class="floating-contact__socialIcon">
+          <PhoneIcon />
+        </div>
+        <span>Позвонить</span>
+      </a>
     </li>
-    <li><a   href="mailto:valeriya.k1995@icloud.com" class="floating-contact__link">
-        
-            <div class="floating-contact__socialIcon">
-                <EmailIcon />
-            </div>
-            <span>Написать на почту</span>
-  </a></li>
-    <li><a href="https://wa.me/79187683088" target="_blank" rel="noopener" class="floating-contact__link"> <div class="floating-contact__socialIcon">
-                <WhatsAppIcon />
-            </div>
-            <span>WhatsApp</span></a></li>
-    <li><a href="https://t.me/stalmasterpro" target="_blank" rel="noopener" class="floating-contact__link"><div class="floating-contact__socialIcon">
-                <TelegramIcon />
-            </div>
-            <span>Telegram</span></a></li>
-    <li><a href="https://web.max.ru/261199918" target="_blank" rel="noopener" class="floating-contact__link"><div class="floating-contact__socialIcon">
-                <MaxIcon />
-            </div>
-            <span>Max</span></a></li>
+    <li>
+      <a href="mailto:valeriya.k1995@icloud.com" class="floating-contact__link">
+        <div class="floating-contact__socialIcon">
+          <EmailIcon />
+        </div>
+        <span>Написать на почту</span>
+      </a>
+    </li>
+    <li>
+      <a
+        href="https://wa.me/79187683088"
+        target="_blank"
+        rel="noopener"
+        class="floating-contact__link"
+      >
+        <div class="floating-contact__socialIcon">
+          <WhatsAppIcon />
+        </div>
+        <span>WhatsApp</span>
+      </a>
+    </li>
+    <li>
+      <a
+        href="https://t.me/stalmasterpro"
+        target="_blank"
+        rel="noopener"
+        class="floating-contact__link"
+      >
+        <div class="floating-contact__socialIcon">
+          <TelegramIcon />
+        </div>
+        <span>Telegram</span>
+      </a>
+    </li>
+    <li>
+      <a
+        href="https://web.max.ru/261199918"
+        target="_blank"
+        rel="noopener"
+        class="floating-contact__link"
+      >
+        <div class="floating-contact__socialIcon">
+          <MaxIcon />
+        </div>
+        <span>Max</span>
+      </a>
+    </li>
   </ul>
 </div>
 
 <script is:inline>
-  const btn = document.getElementById('floatingContactBtn');
-  const menu = document.getElementById('floatingContactMenu');
-  const contact = document.getElementById('floatingContact');
+  const btn = document.getElementById("floatingContactBtn");
+  const menu = document.getElementById("floatingContactMenu");
+  const contact = document.getElementById("floatingContact");
 
-  btn?.addEventListener('click', () => {
-    const isOpen = menu?.classList.toggle('active');
-    btn.setAttribute('aria-expanded', isOpen);
-    menu?.setAttribute('aria-hidden', !isOpen);
-  });
+  btn?.addEventListener("click", () => {
+    const isOpen = menu?.classList.toggle("active");
+    btn.setAttribute("aria-expanded", isOpen);
+    menu?.setAttribute("aria-hidden", !isOpen);
 
-  document.addEventListener('click', (e) => {
-    if (contact && !contact.contains(e.target)) {
-      menu?.classList.remove('active');
-      btn?.setAttribute('aria-expanded', 'false');
-      menu?.setAttribute('aria-hidden', 'true');
+    // Добавляем/убираем класс для контейнера
+    if (isOpen) {
+      contact?.classList.add("floating-contact--open");
+    } else {
+      contact?.classList.remove("floating-contact--open");
     }
   });
 
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && menu?.classList.contains('active')) {
-      menu.classList.remove('active');
-      btn?.setAttribute('aria-expanded', 'false');
-      menu?.setAttribute('aria-hidden', 'true');
+  document.addEventListener("click", (e) => {
+    if (contact && !contact.contains(e.target)) {
+      menu?.classList.remove("active");
+      btn?.setAttribute("aria-expanded", "false");
+      menu?.setAttribute("aria-hidden", "true");
+      contact?.classList.remove("floating-contact--open");
+    }
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && menu?.classList.contains("active")) {
+      menu.classList.remove("active");
+      btn?.setAttribute("aria-expanded", "false");
+      menu?.setAttribute("aria-hidden", "true");
+      contact?.classList.remove("floating-contact--open");
     }
   });
 </script>
@@ -94,126 +133,170 @@ import WhatsApp from '../components/icons/socials/WhatsApp.astro';
     gap: 12px;
 
     &__icon {
-        width: 24px;
-        height: 24px;
+      width: 24px;
+      height: 24px;
     }
 
     &__socialIcon {
-        width: 18px;
-        height: 18px;
-    }
-  
-
-  &__btn {
-    position: relative;
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    background: var(--color-primary, #e67e22);
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    transition: transform 0.3s ease, background 0.3s ease;
-    will-change: transform, box-shadow;
-
-    &:hover {
-      transform: scale(1.05);
-      background: var(--color-primary-hover, #d35400);
+      width: 18px;
+      height: 18px;
     }
 
-    // ♾️ "Infinity" пульсация
-    &::before {
-      content: '';
-      position: absolute;
-      inset: -4px;
+    &__btn {
+      position: relative;
+      width: 56px;
+      height: 56px;
       border-radius: 50%;
-      background: transparent;
-      border: 2px solid var(--color-primary, #e67e22);
+      background: var(--color-primary, #e67e22);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      transition:
+        transform 0.3s ease,
+        background 0.3s ease;
+      will-change: transform, box-shadow;
+
+      &:hover {
+        transform: scale(1.05);
+        background: var(--color-primary-hover, #d35400);
+      }
+
+      // ♾️ "Infinity" пульсация
+      &::before {
+        content: "";
+        position: absolute;
+        inset: -4px;
+        border-radius: 50%;
+        background: transparent;
+        border: 2px solid var(--color-primary, #e67e22);
+        opacity: 0;
+        animation: infinity-pulse 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+      }
+
+      svg {
+        width: 24px;
+        height: 24px;
+        transition: transform 0.3s ease;
+      }
+
+      &[aria-expanded="true"] {
+        svg {
+          transform: rotate(90deg);
+        }
+        &::before {
+          animation: none;
+          opacity: 0;
+        }
+      }
+    }
+
+    &__menu {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+
+      // 🔥 Ключевые изменения: скрываем полностью
       opacity: 0;
-      animation: infinity-pulse 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+      visibility: hidden;
+      transform: translateY(12px) scale(0.96);
+      pointer-events: none;
+
+      // Убираем из потока
+      position: absolute;
+      bottom: 68px; // Позиционируем над кнопкой
+      left: 0;
+
+      transition:
+        opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        visibility 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+      background: white;
+      padding: 10px;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+      list-style: none;
+      margin: 0;
+      min-width: 230px;
+      border: 1px solid var(--color-gray-100, #f0f0f0);
+
+      &.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0) scale(1);
+        pointer-events: auto;
+      }
+
+      li {
+        opacity: 0;
+        transform: translateX(-8px);
+        transition: all 0.25s ease;
+      }
+
+      &.active li {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      // Каскадная анимация пунктов
+      &.active li:nth-child(1) {
+        transition-delay: 0.04s;
+      }
+      &.active li:nth-child(2) {
+        transition-delay: 0.08s;
+      }
+      &.active li:nth-child(3) {
+        transition-delay: 0.12s;
+      }
+      &.active li:nth-child(4) {
+        transition-delay: 0.16s;
+      }
+      &.active li:nth-child(5) {
+        transition-delay: 0.2s;
+      }
     }
 
-    svg {
-      width: 24px;
-      height: 24px;
-      transition: transform 0.3s ease;
-    }
+    &__link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      text-decoration: none;
+      color: var(--color-text, #333);
+      font-weight: 500;
+      border-radius: 10px;
+      transition:
+        background 0.2s ease,
+        color 0.2s ease;
+      white-space: nowrap;
 
-    &[aria-expanded="true"] {
-      svg { transform: rotate(90deg); }
-      &::before { animation: none; opacity: 0; }
+      &:hover {
+        background: var(--color-bg-secondary, #f8f9fa);
+        color: var(--color-primary, #e67e22);
+      }
     }
   }
-
-  &__menu {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    opacity: 0;
-    transform: translateY(12px) scale(0.96);
-    pointer-events: none;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    background: white;
-    padding: 10px;
-    border-radius: 16px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-    list-style: none;
-    margin: 0;
-    min-width: 230px;
-    border: 1px solid var(--color-gray-100, #f0f0f0);
-
-    &.active {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-      pointer-events: auto;
-    }
-
-    li {
-      opacity: 0;
-      transform: translateX(-8px);
-      transition: all 0.25s ease;
-    }
-
-    &.active li {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
-    // Каскадная анимация пунктов
-    &.active li:nth-child(1) { transition-delay: 0.04s; }
-    &.active li:nth-child(2) { transition-delay: 0.08s; }
-    &.active li:nth-child(3) { transition-delay: 0.12s; }
-    &.active li:nth-child(4) { transition-delay: 0.16s; }
-    &.active li:nth-child(5) { transition-delay: 0.20s; }
-  }
-
-  &__link {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 14px;
-    text-decoration: none;
-    color: var(--color-text, #333);
-    font-weight: 500;
-    border-radius: 10px;
-    transition: background 0.2s ease, color 0.2s ease;
-    white-space: nowrap;
-
-    &:hover {
-      background: var(--color-bg-secondary, #f8f9fa);
-      color: var(--color-primary, #e67e22);
-    }
-  }
-}
 
   @keyframes infinity-pulse {
-    0%   { transform: scale(0.95); opacity: 0.7; }
-    30%  { transform: scale(1.05); opacity: 0.3; }
-    60%  { transform: scale(0.98); opacity: 0.5; }
-    100% { transform: scale(0.95); opacity: 0; }
+    0% {
+      transform: scale(0.95);
+      opacity: 0.7;
+    }
+    30% {
+      transform: scale(1.05);
+      opacity: 0.3;
+    }
+    60% {
+      transform: scale(0.98);
+      opacity: 0.5;
+    }
+    100% {
+      transform: scale(0.95);
+      opacity: 0;
+    }
   }
 </style>
