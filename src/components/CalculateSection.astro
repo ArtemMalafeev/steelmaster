@@ -1,59 +1,85 @@
 ---
 import { Image } from "astro:assets";
+
 import main from "../images/main.jpg";
+
 import img1 from "../images/calculator/1.jpg";
+import img2 from "../images/calculator/2.jpg";
+import img3 from "../images/calculator/3.jpg";
+import img4 from "../images/calculator/4.jpg";
+import img5 from "../images/calculator/5.png";
+import img6 from "../images/calculator/6.png";
+import img7 from "../images/calculator/7.png";
+import img8 from "../images/calculator/8.png";
+import img9 from "../images/calculator/9.png";
+
+import defaultImg from "../images/calculator/default.png";
 
 const steps = [
   {
     id: 1,
     title: "Какой забор хотели бы установить ?",
-    description: "Выберите тип конструкции",
+    // description: "Выберите тип конструкции",
     options: [
       {
-        id: "gates",
+        id: "option1",
         label: "Забор жалюзи",
-        desc: "Распашные или откатные",
         img: img1,
       },
-      { id: "fence", label: "Забор", desc: "Любой тип и материал", img: main },
-      { id: "both", label: "Комплекс", desc: "Ворота + забор", img: main },
+      {
+        id: "option2",
+        label: "Забор из штакетника",
+        img: img2,
+      },
+      { id: "option3", label: "Забор рабица", img: img3 },
+      {
+        id: "option4",
+        label: "Забор из профнастила",
+        img: img4,
+      },
     ],
   },
   {
     id: 2,
-    title: "Тип забора",
-    description: "Какой тип забора вам нужен?",
+    title: "Какой цвет забора вам бы хотелось ?",
+    // description: "Какой тип забора вам нужен?",
     options: [
       {
-        id: "solid",
-        label: "Глухой",
-        desc: "Максимальная приватность",
-        img: main,
+        id: "option5",
+        label: "Черный",
+        img: img5,
       },
       {
-        id: "vent",
-        label: "С просветами",
-        desc: "Продуваемый, без тени",
-        img: main,
+        id: "option6",
+        label: "Коричневый",
+        img: img6,
       },
       {
-        id: "sectional",
-        label: "Секционный",
-        desc: "Модульная конструкция",
-        img: main,
+        id: "option7",
+        label: "Серый",
+        img: img7,
       },
       {
-        id: "combo",
-        label: "Комбинированный",
-        desc: "Разные материалы",
-        img: main,
+        id: "option8",
+        label: "Красный",
+        img: img8,
+      },
+      {
+        id: "option9",
+        label: "Граффит",
+        img: img9,
+      },
+      {
+        id: "option10",
+        label: "Другое",
+        img: defaultImg,
       },
     ],
   },
   {
     id: 3,
     title: "Материал",
-    description: "Из чего будет конструкция?",
+    // description: "Из чего будет конструкция?",
     options: [
       {
         id: "metal",
@@ -79,7 +105,7 @@ const steps = [
   {
     id: 4,
     title: "Длина забора",
-    description: "Выберите примерный метраж",
+    // description: "Выберите примерный метраж",
     options: [
       { id: "to10", label: "до 10 м", desc: "Небольшой участок", img: main },
       { id: "10-20", label: "10–20 м", desc: "Средний размер", img: main },
@@ -90,7 +116,7 @@ const steps = [
   {
     id: 5,
     title: "Контакты",
-    description: "Куда отправить расчёт?",
+    // description: "Куда отправить расчёт?",
     isFormStep: true,
     formFields: [
       {
@@ -144,7 +170,7 @@ const steps = [
               hidden={index !== 0}
             >
               <h3 class="calculator__titleStep">{step.title}</h3>
-              <p class="calculator__desc">{step.description}</p>
+              {/* <p class="calculator__desc">{step.description}</p> */}
 
               {step.options ? (
                 <div class="calculator__options">
@@ -158,7 +184,7 @@ const steps = [
                       />
                       <div class="calculator__optionCard">
                         <div class="calculator__optionImage">
-                          <Image src={opt.img} alt={opt.desc} loading="lazy" />
+                          <Image src={opt.img} alt={opt.label} loading="lazy" />
                         </div>
                         <div class="calculator__optionContent">
                           <h4 class="calculator__optionLabel">{opt.label}</h4>
@@ -370,6 +396,7 @@ const steps = [
     }
 
     &__options {
+      margin-top: 14px;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 10px;
